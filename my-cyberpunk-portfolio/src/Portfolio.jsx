@@ -58,57 +58,60 @@ function Portfolio() {
   };
 
   return (
-    // Main container with cyberpunk theme styling
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-black text-gray-100 font-inter antialiased">
+    // Main container with space theme styling
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-black text-gray-100 font-inter antialiased relative overflow-hidden">
+      {/* Stars background element */}
+      <div className="stars"></div>
+      <div className="twinkling"></div>
+      <div className="clouds"></div>
+
       {/* Tailwind CSS CDN for styling - This makes Tailwind work without local setup */}
       <script src="https://cdn.tailwindcss.com"></script>
       {/* Google Fonts - Inter for a clean, modern look */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
       {/* Header/Navigation */}
-      <header className="fixed w-full z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm shadow-lg py-4 px-6 md:px-12">
+      <header className="fixed w-full z-50 bg-gray-900 bg-opacity-70 backdrop-blur-md shadow-xl py-4 px-6 md:px-12">
         <nav className="container mx-auto flex justify-between items-center">
-          <a href="#hero" className="text-3xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
-            <span className="font-mono">&lt;</span><span className="text-purple-400">DEV</span><span className="font-mono">/&gt;</span>
+          <a href="#hero" className="text-3xl font-bold text-blue-400 hover:text-blue-300 transition-colors duration-300">
+            <span className="font-mono">&lt;</span><span className="text-purple-400">COSMIC</span><span className="font-mono">/&gt;</span>
           </a>
           <ul className="flex space-x-6 md:space-x-10">
-            <li><a href="#about" className="text-lg text-gray-300 hover:text-green-400 transition-colors duration-300">About</a></li>
-            <li><a href="#skills" className="text-lg text-gray-300 hover:text-purple-400 transition-colors duration-300">Skills</a></li>
-            <li><a href="#projects" className="text-lg text-gray-300 hover:text-cyan-400 transition-colors duration-300">Projects</a></li>
-            <li><a href="#contact" className="text-lg text-gray-300 hover:text-red-400 transition-colors duration-300">Contact</a></li>
+            <li><a href="#about" className="text-lg text-gray-300 hover:text-green-300 transition-colors duration-300">About</a></li>
+            <li><a href="#skills" className="text-lg text-gray-300 hover:text-purple-300 transition-colors duration-300">Skills</a></li>
+            <li><a href="#projects" className="text-lg text-gray-300 hover:text-blue-300 transition-colors duration-300">Projects</a></li>
+            <li><a href="#contact" className="text-lg text-gray-300 hover:text-red-300 transition-colors duration-300">Contact</a></li>
           </ul>
         </nav>
       </header>
 
       {/* Hero Section */}
-      <section id="hero" className="relative h-screen flex items-center justify-center text-center px-4 overflow-hidden">
-        {/* Background glitch effect (simulated with pseudo-elements or subtle animations) */}
-        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: "url('https://placehold.co/1920x1080/0A0A0A/1A1A1A?text=CYBERPUNK+GRID')" }}></div>
+      <section id="hero" className="relative h-screen flex items-center justify-center text-center px-4 z-10">
         <div className="relative z-10">
-          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-green-400 animate-pulse-light">
-            <span className="block glitch" data-text="Welcome to my">Welcome to my</span>
-            <span className="block glitch" data-text="Cybernetic Domain">Cybernetic Domain</span>
+          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-fade-in-up glow-text">
+            <span className="block">Journey Through My</span>
+            <span className="block">Digital Universe</span>
           </h1>
-          <p className="mt-4 text-xl md:text-2xl text-gray-300 font-light tracking-wide">
-            I am a <span className="text-green-400 font-medium">B.Tech CSE Student</span> at LPU.
-            <br />Crafting digital realities one line of code at a time.
+          <p className="mt-4 text-xl md:text-2xl text-gray-300 font-light tracking-wide animate-fade-in-up delay-200">
+            I am a <span className="text-green-300 font-medium">B.Tech CSE Student</span> at LPU.
+            <br />Navigating the cosmos of code, one innovation at a time.
           </p>
-          <div className="mt-8 flex justify-center space-x-4">
-            <a href="#projects" className="px-6 py-3 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 neon-shadow-purple">
-              View My Work
+          <div className="mt-8 flex justify-center space-x-4 animate-fade-in-up delay-400">
+            <a href="#projects" className="px-6 py-3 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 cosmic-btn-purple">
+              Explore My Creations
             </a>
-            <a href="#contact" className="px-6 py-3 bg-cyan-600 text-white rounded-lg shadow-lg hover:bg-cyan-700 transition-all duration-300 transform hover:scale-105 neon-shadow-cyan">
-              Get in Touch
+            <a href="#contact" className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 cosmic-btn-blue">
+              Chart a Course
             </a>
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-6 md:px-12 bg-gray-900 border-t border-b border-gray-800">
+      <section id="about" className="py-20 px-6 md:px-12 bg-gray-900 bg-opacity-70 border-t border-b border-gray-800 relative z-10">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-4xl font-bold text-center text-green-400 mb-12 neon-text-green">
-            <User className="inline-block mr-3 mb-1" size={36} />About Me<span className="text-gray-600">_</span>
+          <h2 className="text-4xl font-bold text-center text-green-300 mb-12 glow-text-green">
+            <User className="inline-block mr-3 mb-1" size={36} />About My Orbit<span className="text-gray-600">_</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-lg leading-relaxed text-gray-300 space-y-4">
@@ -124,7 +127,7 @@ function Portfolio() {
             </div>
             <div className="flex justify-center">
               <img
-                src="https://placehold.co/300x300/1A1A1A/00FF00?text=YOUR+PROFILE+PIC"
+                src="https://placehold.co/300x300/1A1A1A/00FFFF?text=YOUR+COSMIC+PIC"
                 alt="Profile Picture"
                 className="rounded-full border-4 border-purple-500 shadow-xl transform hover:scale-105 transition-transform duration-300"
               />
@@ -134,10 +137,10 @@ function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 md:px-12 bg-black border-t border-b border-gray-800">
+      <section id="skills" className="py-20 px-6 md:px-12 bg-black bg-opacity-70 border-t border-b border-gray-800 relative z-10">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-4xl font-bold text-center text-purple-400 mb-12 neon-text-purple">
-            <Code className="inline-block mr-3 mb-1" size={36} />My Skill Matrix<span className="text-gray-600">_</span>
+          <h2 className="text-4xl font-bold text-center text-purple-300 mb-12 glow-text-purple">
+            <Code className="inline-block mr-3 mb-1" size={36} />My Stellar Skills<span className="text-gray-600">_</span>
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {/* Skill Card Example */}
@@ -153,7 +156,7 @@ function Portfolio() {
               { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
               { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
             ].map((skill, index) => (
-              <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-lg flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-300 neon-border-cyan">
+              <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-lg flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-300 cosmic-card-border-blue">
                 <img src={skill.icon} alt={skill.name} className="w-16 h-16 mb-4" />
                 <h3 className="text-xl font-semibold text-gray-200">{skill.name}</h3>
               </div>
@@ -163,10 +166,10 @@ function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 md:px-12 bg-gray-900 border-t border-b border-gray-800">
+      <section id="projects" className="py-20 px-6 md:px-12 bg-gray-900 bg-opacity-70 border-t border-b border-gray-800 relative z-10">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center text-cyan-400 mb-12 neon-text-cyan">
-            <Briefcase className="inline-block mr-3 mb-1" size={36} />My Digital Creations<span className="text-gray-600">_</span>
+          <h2 className="text-4xl font-bold text-center text-blue-300 mb-12 glow-text-blue">
+            <Briefcase className="inline-block mr-3 mb-1" size={36} />My Cosmic Creations<span className="text-gray-600">_</span>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
             {/* Project Card Example */}
@@ -214,14 +217,14 @@ function Portfolio() {
                 image: 'https://placehold.co/400x250/2A2A2A/8A2BE2?text=Portfolio+V1'
               },
             ].map((project, index) => (
-              <div key={index} className="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 neon-border-purple">
+              <div key={index} className="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cosmic-card-border-purple">
                 <img src={project.image} alt={project.title} className="w-full h-48 object-cover border-b border-gray-700" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/2A2A2A/CCCCCC?text=Image+Error"; }} />
                 <div className="p-6">
-                  <h3 className="text-2xl font-bold text-cyan-300 mb-2">{project.title}</h3>
+                  <h3 className="text-2xl font-bold text-blue-300 mb-2">{project.title}</h3>
                   <p className="text-gray-400 text-sm mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {project.tech.map((tech, idx) => (
-                      <span key={idx} className="bg-gray-700 text-xs text-green-300 px-3 py-1 rounded-full neon-shadow-green-sm">
+                      <span key={idx} className="bg-gray-700 text-xs text-green-300 px-3 py-1 rounded-full glow-sm">
                         {tech}
                       </span>
                     ))}
@@ -237,12 +240,12 @@ function Portfolio() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 md:px-12 bg-black border-t border-b border-gray-800">
+      <section id="contact" className="py-20 px-6 md:px-12 bg-black bg-opacity-70 border-t border-b border-gray-800 relative z-10">
         <div className="container mx-auto max-w-2xl">
-          <h2 className="text-4xl font-bold text-center text-red-400 mb-12 neon-text-red">
-            <Mail className="inline-block mr-3 mb-1" size={36} />Connect with Me<span className="text-gray-600">_</span>
+          <h2 className="text-4xl font-bold text-center text-red-300 mb-12 glow-text-red">
+            <Mail className="inline-block mr-3 mb-1" size={36} />Connect Through the Void<span className="text-gray-600">_</span>
           </h2>
-          <form onSubmit={handleSubmit} className="bg-gray-800 p-8 rounded-xl shadow-lg neon-border-cyan">
+          <form onSubmit={handleSubmit} className="bg-gray-800 p-8 rounded-xl shadow-lg cosmic-card-border-blue">
             <div className="mb-6">
               <label htmlFor="name" className="block text-gray-300 text-lg font-medium mb-2">
                 Name <span className="text-red-500">*</span>
@@ -254,7 +257,7 @@ function Portfolio() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-transparent focus:border-cyan-500 transition-all duration-200"
+                className="w-full px-4 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-transparent focus:border-blue-500 transition-all duration-200"
                 placeholder="Enter your name"
               />
             </div>
@@ -269,7 +272,7 @@ function Portfolio() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-4 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-transparent focus:border-cyan-500 transition-all duration-200"
+                className="w-full px-4 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-transparent focus:border-blue-500 transition-all duration-200"
                 placeholder="Enter your email"
               />
             </div>
@@ -284,13 +287,13 @@ function Portfolio() {
                 onChange={handleChange}
                 required
                 rows="6"
-                className="w-full px-4 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-transparent focus:border-cyan-500 transition-all duration-200 resize-y"
+                className="w-full px-4 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 border border-transparent focus:border-blue-500 transition-all duration-200 resize-y"
                 placeholder="Your message here..."
               ></textarea>
             </div>
             <button
               type="submit"
-              className="w-full flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-105 neon-shadow-green disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-105 cosmic-btn-green disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={formStatus.loading}
             >
               {formStatus.loading ? (
@@ -324,166 +327,158 @@ function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 md:px-12 bg-gray-950 text-center text-gray-500 text-sm">
-        <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved. // <span className="text-purple-400">Built with React & Node.js</span></p>
+      <footer className="py-8 px-6 md:px-12 bg-gray-950 bg-opacity-70 text-center text-gray-500 text-sm relative z-10">
+        <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved. // <span className="text-purple-400">Powered by React & Node.js</span></p>
       </footer>
 
-      {/* Custom CSS for glitch effect and neon shadows */}
+      {/* Custom CSS for cosmic effects */}
       <style jsx="true">{`
-        /* Glitch effect for hero text */
-        .glitch {
-          position: relative;
-          color: #fff;
-          mix-blend-mode: lighten;
-          animation: glitch-skew 1s infinite alternate cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        /* Main background for deep space feel */
+        .min-h-screen {
+          background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 70%); /* Deeper space gradient */
         }
 
-        .glitch::before,
-        .glitch::after {
-          content: attr(data-text);
+        /* Background stars and twinkling effect */
+        .stars, .twinkling, .clouds {
           position: absolute;
           top: 0;
           left: 0;
+          right: 0;
+          bottom: 0;
           width: 100%;
           height: 100%;
+          display: block;
+          z-index: 0;
         }
 
-        .glitch::before {
-          left: 2px;
-          text-shadow: -2px 0 #0ff;
-          animation: glitch-anim-1 1s infinite alternate-reverse cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        .stars {
+          background: transparent url('http://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
         }
 
-        .glitch::after {
-          left: -2px;
-          text-shadow: -2px 0 #f0f;
-          animation: glitch-anim-2 1s infinite alternate-reverse cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        .twinkling {
+          background: transparent url('http://www.script-tutorials.com/demos/360/images/twinkling.png') repeat top center;
+          animation: move-twink-back 200s linear infinite;
         }
 
-        @keyframes glitch-anim-1 {
+        .clouds {
+          background: transparent url('http://www.script-tutorials.com/demos/360/images/clouds3.png') repeat top center;
+          animation: move-clouds-back 200s linear infinite;
+          opacity: 0.2; /* Slightly reduced opacity for a more subtle cloud effect */
+        }
+
+        /* NEW: Nebula effect using multiple gradients */
+        .min-h-screen::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: 
+            radial-gradient(ellipse at 10% 20%, rgba(20, 0, 50, 0.4) 0%, transparent 70%),
+            radial-gradient(ellipse at 80% 50%, rgba(50, 0, 70, 0.3) 0%, transparent 70%),
+            radial-gradient(ellipse at 40% 90%, rgba(0, 30, 60, 0.5) 0%, transparent 70%),
+            radial-gradient(ellipse at 60% 10%, rgba(70, 20, 0, 0.2) 0%, transparent 70%);
+          animation: nebula-drift 300s linear infinite alternate;
+          z-index: 0; /* Ensure it's behind content but above stars if desired */
+          mix-blend-mode: screen; /* Blends colors nicely */
+          opacity: 0.5; /* Adjust overall nebula visibility */
+        }
+
+        @keyframes move-twink-back {
+          from { background-position: 0 0; }
+          to { background-position: -10000px 5000px; }
+        }
+
+        @keyframes move-clouds-back {
+          from { background-position: 0 0; }
+          to { background-position: 10000px 0; }
+        }
+
+        /* NEW: Nebula drift animation */
+        @keyframes nebula-drift {
           0% {
-            transform: translate(0);
-          }
-          20% {
-            transform: translate(-2px, 2px);
-          }
-          40% {
-            transform: translate(-2px, -2px);
-          }
-          60% {
-            transform: translate(2px, 2px);
-          }
-          80% {
-            transform: translate(2px, -2px);
+            background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%;
           }
           100% {
-            transform: translate(0);
+            background-position: 100% 100%, -100% 50%, 50% -100%, -50% 100%;
           }
         }
 
-        @keyframes glitch-anim-2 {
-          0% {
-            transform: translate(0);
-          }
-          20% {
-            transform: translate(2px, -2px);
-          }
-          40% {
-            transform: translate(2px, 2px);
-          }
-          60% {
-            transform: translate(-2px, -2px);
-          }
-          80% {
-            transform: translate(-2px, 2px);
-          }
-          100% {
-            transform: translate(0);
-          }
+        /* Text glow effect - kept for consistency */
+        .glow-text {
+          text-shadow: 0 0 8px rgba(173, 216, 230, 0.8), 0 0 15px rgba(173, 216, 230, 0.6); /* Light blue glow */
+        }
+        .glow-text-green {
+          text-shadow: 0 0 8px rgba(144, 238, 144, 0.8), 0 0 15px rgba(144, 238, 144, 0.6); /* Light green glow */
+        }
+        .glow-text-purple {
+          text-shadow: 0 0 8px rgba(221, 160, 221, 0.8), 0 0 15px rgba(221, 160, 221, 0.6); /* Plum glow */
+        }
+        .glow-text-blue {
+          text-shadow: 0 0 8px rgba(100, 149, 237, 0.8), 0 0 15px rgba(100, 149, 237, 0.6); /* Cornflower blue glow */
+        }
+        .glow-text-red {
+          text-shadow: 0 0 8px rgba(255, 99, 71, 0.8), 0 0 15px rgba(255, 99, 71, 0.6); /* Tomato glow */
         }
 
-        @keyframes glitch-skew {
-          0% {
-            transform: skew(0deg);
-          }
-          20% {
-            transform: skew(-2deg);
-          }
-          40% {
-            transform: skew(2deg);
-          }
-          60% {
-            transform: skew(-1deg);
-          }
-          80% {
-            transform: skew(1deg);
-          }
-          100% {
-            transform: skew(0deg);
-          }
+        /* Small glow for tech stack tags - kept for consistency */
+        .glow-sm {
+            box-shadow: 0 0 5px rgba(144, 238, 144, 0.6);
         }
 
-        /* Neon text shadows */
-        .neon-text-green {
-          text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0, 0 0 20px #0f0;
+        /* Cosmic button shadows - kept for consistency */
+        .cosmic-btn-purple {
+          box-shadow: 0 0 10px rgba(173, 216, 230, 0.6), 0 0 20px rgba(173, 216, 230, 0.4);
         }
-        .neon-text-purple {
-          text-shadow: 0 0 5px #8a2be2, 0 0 10px #8a2be2, 0 0 15px #8a2be2, 0 0 20px #8a2be2;
+        .cosmic-btn-blue {
+          box-shadow: 0 0 10px rgba(144, 238, 144, 0.6), 0 0 20px rgba(144, 238, 144, 0.4);
         }
-        .neon-text-cyan {
-          text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff, 0 0 20px #0ff;
-        }
-        .neon-text-red {
-          text-shadow: 0 0 5px #f00, 0 0 10px #f00, 0 0 15px #f00, 0 0 20px #f00;
+        .cosmic-btn-green {
+          box-shadow: 0 0 10px rgba(221, 160, 221, 0.6), 0 0 20px rgba(221, 160, 221, 0.4);
         }
 
-        /* Neon button shadows */
-        .neon-shadow-purple {
-          box-shadow: 0 0 8px #8a2be2, 0 0 15px #8a2be2;
-        }
-        .neon-shadow-cyan {
-          box-shadow: 0 0 8px #0ff, 0 0 15px #0ff;
-        }
-        .neon-shadow-green {
-          box-shadow: 0 0 8px #0f0, 0 0 15px #0f0;
-        }
-        .neon-shadow-green-sm {
-          box-shadow: 0 0 5px #0f0;
-        }
-
-        /* Neon border effect */
-        .neon-border-cyan {
+        /* Cosmic card border effect - kept for consistency */
+        .cosmic-card-border-blue {
           border: 1px solid transparent;
-          box-shadow: 0 0 10px #0ff, inset 0 0 10px #0ff;
+          box-shadow: 0 0 12px rgba(100, 149, 237, 0.6), inset 0 0 12px rgba(100, 149, 237, 0.4);
           transition: all 0.3s ease-in-out;
         }
-        .neon-border-cyan:hover {
-          box-shadow: 0 0 15px #0ff, inset 0 0 15px #0ff;
+        .cosmic-card-border-blue:hover {
+          box-shadow: 0 0 20px rgba(100, 149, 237, 0.8), inset 0 0 20px rgba(100, 149, 237, 0.6);
         }
 
-        .neon-border-purple {
+        .cosmic-card-border-purple {
           border: 1px solid transparent;
-          box-shadow: 0 0 10px #8a2be2, inset 0 0 10px #8a2be2;
+          box-shadow: 0 0 12px rgba(221, 160, 221, 0.6), inset 0 0 12px rgba(221, 160, 221, 0.4);
           transition: all 0.3s ease-in-out;
         }
-        .neon-border-purple:hover {
-          box-shadow: 0 0 15px #8a2be2, inset 0 0 15px #8a2be2;
+        .cosmic-card-border-purple:hover {
+          box-shadow: 0 0 20px rgba(221, 160, 221, 0.8), inset 0 0 20px rgba(221, 160, 221, 0.6);
         }
 
-        /* Pulse light animation */
-        @keyframes pulse-light {
-          0%, 100% {
-            filter: brightness(1);
+        /* Fade-in-up animation - kept for consistency */
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
           }
-          50% {
-            filter: brightness(1.5);
+          to {
+            opacity: 1;
+            transform: translateY(0);
           }
         }
-        .animate-pulse-light {
-          animation: pulse-light 3s infinite ease-in-out;
+        .animate-fade-in-up {
+          animation: fade-in-up 1s ease-out forwards;
+        }
+        .animate-fade-in-up.delay-200 {
+          animation-delay: 0.2s;
+        }
+        .animate-fade-in-up.delay-400 {
+          animation-delay: 0.4s;
         }
 
-        /* Smooth scrolling */
+        /* Smooth scrolling - kept for consistency */
         html {
           scroll-behavior: smooth;
         }
