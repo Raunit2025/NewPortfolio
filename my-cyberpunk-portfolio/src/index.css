@@ -72,16 +72,91 @@ body::after {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(ellipse at 15% 25%, rgba(30, 0, 60, 0.6) 0%, transparent 70%), /* Slightly less dark purple */
-    radial-gradient(ellipse at 85% 55%, rgba(60, 0, 90, 0.5) 0%, transparent 70%), /* Slightly less dark pink/purple */
-    radial-gradient(ellipse at 45% 95%, rgba(0, 50, 80, 0.7) 0%, transparent 70%), /* Slightly less dark blue */
-    radial-gradient(ellipse at 65% 15%, rgba(80, 20, 0, 0.4) 0%, transparent 70%); /* Slightly less dark orange/red */
-  animation: nebula-drift 300s linear infinite alternate;
+    radial-gradient(ellipse at 15% 25%, rgba(30, 0, 60, 0.6) 0%, transparent 70%),
+    radial-gradient(ellipse at 85% 55%, rgba(60, 0, 90, 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse at 45% 95%, rgba(0, 50, 80, 0.7) 0%, transparent 70%),
+    radial-gradient(ellipse at 65% 15%, rgba(80, 20, 0, 0.4) 0%, transparent 70%);
+  animation: nebula-drift 300s ease-in-out infinite alternate;
   mix-blend-mode: screen;
-  opacity: 0.9; /* Increased opacity for better visibility */
-  z-index: -2; /* Between content and stars */
+  opacity: 0.9;
+  z-index: -2;
   pointer-events: none;
 }
+
+/* Projects Section specific background (more vibrant) */
+.cosmic-projects-section-bg {
+  background: 
+    radial-gradient(circle at 10% 80%, rgba(80, 0, 150, 0.5) 0%, transparent 70%), /* Vibrant purple nebula */
+    radial-gradient(circle at 90% 20%, rgba(0, 80, 120, 0.4) 0%, transparent 70%), /* Vibrant blue nebula */
+    radial-gradient(circle at 50% 50%, rgba(120, 20, 20, 0.3) 0%, transparent 70%), /* Hint of red nebula */
+    linear-gradient(to top right, #100020, #00000a); /* Base gradient for depth */
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition: background 0.5s ease-in-out;
+  overflow: hidden; /* Contain radial gradients */
+  background-attachment: scroll; /* Ensures background scrolls with the section */
+}
+
+/* Project Card Background (subtle radial gradient) */
+.cosmic-project-card-bg {
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05) 0%, transparent 60%),
+              radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+              #1c1c2a; /* Dark blue-purple base */
+  transition: background 0.3s ease-in-out;
+}
+
+/* Project Card Hover Effect (more dynamic glow with pulse) */
+.cosmic-project-card-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 1; /* Ensure card is above its pseudo-element */
+}
+
+.cosmic-project-card-hover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, 
+              transparent 0%, transparent 40%, 
+              rgba(139, 92, 246, 0.9) 50%, /* Stronger purple */
+              rgba(0, 200, 255, 0.7) 60%, /* Cyan highlight */
+              transparent 70%, transparent 100%);
+  transform: rotate(0deg);
+  animation: none; /* No animation by default */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, transform 0.1s linear; /* Smooth opacity and quick transform for pulse */
+  z-index: 0;
+}
+
+.cosmic-project-card-hover:hover::before {
+  opacity: 1;
+  animation: rotateGlow 1.5s linear infinite, pulseGlow 0.8s ease-in-out infinite alternate; /* Rotate and pulse */
+}
+
+/* Adjust z-index of content inside card to be above the glow */
+.cosmic-project-card-hover > img,
+.cosmic-project-card-hover > div {
+  position: relative;
+  z-index: 2; /* Ensure content is above the pseudo-element and glow */
+}
+
+@keyframes rotateGlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
 
 /* Star animations (unique for each layer for random feel) */
 @keyframes animateStars1 {
@@ -129,6 +204,17 @@ body::after {
 /* Small glow for tech stack tags */
 .glow-sm {
     box-shadow: 0 0 5px rgba(144, 238, 144, 0.6);
+}
+
+/* Glow on hover for profile picture */
+.glow-on-hover {
+  transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.8), /* Purple glow */
+              0 0 30px rgba(139, 92, 246, 0.6);
+  border-color: #a78bfa; /* Lighter purple border */
 }
 
 /* Cosmic button shadows */
@@ -181,8 +267,21 @@ body::after {
 .animate-fade-in-up.delay-400 {
   animation-delay: 0.4s;
 }
+/* Staggered animation delays for Skills and Projects sections */
+.animation-delay-0 { animation-delay: 0s; }
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-500 { animation-delay: 0.5s; }
+.animation-delay-600 { animation-delay: 0.6s; }
+.animation-delay-700 { animation-delay: 0.7s; }
+.animation-delay-800 { animation-delay: 0.8s; }
+.animation-delay-900 { animation-delay: 0.9s; }
+/* Add more as needed for more skill/project cards */
 
 /* Smooth scrolling */
+/* Smooth scrolling */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: smooth !important; /* Added !important for testing */
 }

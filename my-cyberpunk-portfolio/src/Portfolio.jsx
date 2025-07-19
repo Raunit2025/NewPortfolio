@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Mail, User, Code, Briefcase, Sparkles, Send } from 'lucide-react'; // Importing icons from lucide-react
 
 // Main Portfolio component
@@ -16,6 +16,94 @@ function Portfolio() {
     error: false,
     message: '',
   });
+
+  // Ref for the About section for intersection observer
+  const aboutSectionRef = useRef(null);
+  const [aboutInView, setAboutInView] = useState(false);
+
+  // Ref for the Skills section for intersection observer
+  const skillsSectionRef = useRef(null);
+  const [skillsInView, setSkillsInView] = useState(false);
+
+  // Ref for the Projects section for intersection observer
+  const projectsSectionRef = useRef(null);
+  const [projectsInView, setProjectsInView] = useState(false);
+
+
+  // Intersection Observer for About section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setAboutInView(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (aboutSectionRef.current) {
+      observer.observe(aboutSectionRef.current);
+    }
+
+    return () => {
+      if (aboutSectionRef.current) {
+        observer.unobserve(aboutSectionRef.current);
+      }
+    };
+  }, []);
+
+  // Intersection Observer for Skills section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setSkillsInView(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    if (skillsSectionRef.current) {
+      observer.observe(skillsSectionRef.current);
+    }
+
+    return () => {
+      if (skillsSectionRef.current) {
+        observer.unobserve(skillsSectionRef.current);
+      }
+    };
+  }, []);
+
+  // Intersection Observer for Projects section
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setProjectsInView(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 } // Trigger when 20% of the section is visible
+    );
+
+    if (projectsSectionRef.current) {
+      observer.observe(projectsSectionRef.current);
+    }
+
+    return () => {
+      if (projectsSectionRef.current) {
+        observer.unobserve(projectsSectionRef.current);
+      }
+    };
+  }, []);
 
   // Handle input changes for the form fields
   const handleChange = (e) => {
@@ -103,28 +191,28 @@ function Portfolio() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-6 md:px-12 bg-gray-900 bg-opacity-70 border-t border-b border-gray-800 relative z-10">
+      <section id="about" ref={aboutSectionRef} className="py-20 px-6 md:px-12 bg-gray-900 bg-opacity-70 border-t border-b border-gray-800 relative z-10">
         <div className="container mx-auto max-w-4xl">
-          <h2 className="text-4xl font-bold text-center text-green-300 mb-12 glow-text-green">
+          <h2 className={`text-4xl font-bold text-center text-green-300 mb-12 glow-text-green ${aboutInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <User className="inline-block mr-3 mb-1" size={36} />About My Orbit<span className="text-gray-600">_</span>
           </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="text-lg leading-relaxed text-gray-300 space-y-4">
-              <p>
+              <p className={`${aboutInView ? 'animate-fade-in-up delay-200' : 'opacity-0'}`}>
                 As a passionate B.Tech CSE student at LPU, I delve deep into the world of technology, constantly seeking to expand my knowledge and build innovative solutions. My journey is fueled by curiosity and a drive to transform complex ideas into elegant, functional code.
               </p>
-              <p>
+              <p className={`${aboutInView ? 'animate-fade-in-up delay-400' : 'opacity-0'}`}>
                 I thrive in dynamic environments where I can apply my problem-solving skills and contribute to impactful projects. My focus areas include web development, with a keen interest in creating engaging user experiences and robust backend systems.
               </p>
-              <p>
+              <p className={`${aboutInView ? 'animate-fade-in-up delay-600' : 'opacity-0'}`}>
                 Beyond coding, I enjoy exploring new tech trends, contributing to open-source projects, and collaborating with fellow enthusiasts. I believe in continuous learning and adapting to the ever-evolving tech landscape.
               </p>
             </div>
-            <div className="flex justify-center">
+            <div className={`flex justify-center ${aboutInView ? 'animate-fade-in-up delay-700' : 'opacity-0'}`}>
               <img
-                src="https://placehold.co/300x300/1A1A1A/00FFFF?text=YOUR+COSMIC+PIC"
+                src="https://placehold.co/350x350/1A1A1A/00FFFF?text=YOUR+COSMIC+PIC" // Slightly larger size
                 alt="Profile Picture"
-                className="rounded-full border-4 border-purple-500 shadow-xl transform hover:scale-105 transition-transform duration-300"
+                className="rounded-full border-4 border-purple-500 shadow-xl transform hover:scale-105 transition-transform duration-300 glow-on-hover"
               />
             </div>
           </div>
@@ -132,9 +220,9 @@ function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 px-6 md:px-12 bg-black bg-opacity-70 border-t border-b border-gray-800 relative z-10">
+      <section id="skills" ref={skillsSectionRef} className="py-20 px-6 md:px-12 bg-black bg-opacity-70 border-t border-b border-gray-800 relative z-10">
         <div className="container mx-auto max-w-5xl">
-          <h2 className="text-4xl font-bold text-center text-purple-300 mb-12 glow-text-purple">
+          <h2 className={`text-4xl font-bold text-center text-purple-300 mb-12 glow-text-purple ${skillsInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <Code className="inline-block mr-3 mb-1" size={36} />My Stellar Skills<span className="text-gray-600">_</span>
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -151,7 +239,10 @@ function Portfolio() {
               { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
               { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
             ].map((skill, index) => (
-              <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-lg flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-300 cosmic-card-border-blue">
+              <div
+                key={index}
+                className={`bg-gray-800 p-6 rounded-xl shadow-lg flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-300 cosmic-card-border-blue ${skillsInView ? `animate-fade-in-up animation-delay-${index * 100}` : 'opacity-0'}`}
+              >
                 <img src={skill.icon} alt={skill.name} className="w-16 h-16 mb-4" />
                 <h3 className="text-xl font-semibold text-gray-200">{skill.name}</h3>
               </div>
@@ -161,9 +252,9 @@ function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 md:px-12 bg-gray-900 bg-opacity-70 border-t border-b border-gray-800 relative z-10">
+      <section id="projects" ref={projectsSectionRef} className="py-20 px-6 md:px-12 border-t border-b border-gray-800 relative z-10 cosmic-projects-section-bg"> {/* New class for section background */}
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center text-blue-300 mb-12 glow-text-blue">
+          <h2 className={`text-4xl font-bold text-center text-blue-300 mb-12 glow-text-blue ${projectsInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
             <Briefcase className="inline-block mr-3 mb-1" size={36} />My Cosmic Creations<span className="text-gray-600">_</span>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -181,7 +272,7 @@ function Portfolio() {
                 description: 'Admin dashboard for an e-commerce platform with sales analytics, product management, and user roles.',
                 tech: ['React', 'Chart.js', 'Express'],
                 link: '#',
-                image: 'https://placehold.co/400x250/2A2A2A/FF00FF?text=E-commerce+Dashboard'
+                image: 'https://placehold.co/400x250/2A2A1A/FF00FF?text=E-commerce+Dashboard'
               },
               {
                 title: 'Task Management App',
@@ -212,15 +303,15 @@ function Portfolio() {
                 image: 'https://placehold.co/400x250/2A2A2A/8A2BE2?text=Portfolio+V1'
               },
             ].map((project, index) => (
-              <div key={index} className="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cosmic-card-border-purple">
+              <div
+                key={index}
+                className={`bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 cosmic-card-border-purple cosmic-project-card-hover cosmic-project-card-bg ${projectsInView ? `animate-fade-in-up animation-delay-${index * 100}` : 'opacity-0'}`}
+              >
                 <img src={project.image} alt={project.title} className="w-full h-48 object-cover border-b border-gray-700" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/2A2A2A/CCCCCC?text=Image+Error"; }} />
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-blue-300 mb-2">{project.title}</h3>
                   <p className="text-gray-400 text-sm mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="bg-gray-700 text-xs text-green-300 px-3 py-1 rounded-full glow-sm">
-                      {/* Note: This span should be part of the map function for tech, fixed below */}
-                    </span>
                     {project.tech.map((tech, idx) => (
                       <span key={idx} className="bg-gray-700 text-xs text-green-300 px-3 py-1 rounded-full glow-sm">
                         {tech}
