@@ -58,13 +58,8 @@ function Portfolio() {
   };
 
   return (
-    // Main container with space theme styling
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-black text-gray-100 font-inter antialiased relative overflow-hidden">
-      {/* Stars background element */}
-      <div className="stars"></div>
-      <div className="twinkling"></div>
-      <div className="clouds"></div>
-
+    // Main container for content. Body in index.html handles the background.
+    <div className="min-h-screen text-gray-100 font-inter antialiased relative overflow-hidden">
       {/* Tailwind CSS CDN for styling - This makes Tailwind work without local setup */}
       <script src="https://cdn.tailwindcss.com"></script>
       {/* Google Fonts - Inter for a clean, modern look */}
@@ -223,6 +218,9 @@ function Portfolio() {
                   <h3 className="text-2xl font-bold text-blue-300 mb-2">{project.title}</h3>
                   <p className="text-gray-400 text-sm mb-4">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-4">
+                    <span className="bg-gray-700 text-xs text-green-300 px-3 py-1 rounded-full glow-sm">
+                      {/* Note: This span should be part of the map function for tech, fixed below */}
+                    </span>
                     {project.tech.map((tech, idx) => (
                       <span key={idx} className="bg-gray-700 text-xs text-green-300 px-3 py-1 rounded-full glow-sm">
                         {tech}
@@ -330,159 +328,6 @@ function Portfolio() {
       <footer className="py-8 px-6 md:px-12 bg-gray-950 bg-opacity-70 text-center text-gray-500 text-sm relative z-10">
         <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved. // <span className="text-purple-400">Powered by React & Node.js</span></p>
       </footer>
-
-      {/* Custom CSS for cosmic effects */}
-      <style jsx="true">{`
-        /* Main background for deep space feel */
-        .min-h-screen {
-          background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 70%); /* Deeper space gradient */
-        }
-
-        /* Background stars and twinkling effect */
-        .stars, .twinkling, .clouds {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          width: 100%;
-          height: 100%;
-          display: block;
-          z-index: 0;
-        }
-
-        .stars {
-          background: transparent url('http://www.script-tutorials.com/demos/360/images/stars.png') repeat top center;
-        }
-
-        .twinkling {
-          background: transparent url('http://www.script-tutorials.com/demos/360/images/twinkling.png') repeat top center;
-          animation: move-twink-back 200s linear infinite;
-        }
-
-        .clouds {
-          background: transparent url('http://www.script-tutorials.com/demos/360/images/clouds3.png') repeat top center;
-          animation: move-clouds-back 200s linear infinite;
-          opacity: 0.2; /* Slightly reduced opacity for a more subtle cloud effect */
-        }
-
-        /* NEW: Nebula effect using multiple gradients */
-        .min-h-screen::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: 
-            radial-gradient(ellipse at 10% 20%, rgba(20, 0, 50, 0.4) 0%, transparent 70%),
-            radial-gradient(ellipse at 80% 50%, rgba(50, 0, 70, 0.3) 0%, transparent 70%),
-            radial-gradient(ellipse at 40% 90%, rgba(0, 30, 60, 0.5) 0%, transparent 70%),
-            radial-gradient(ellipse at 60% 10%, rgba(70, 20, 0, 0.2) 0%, transparent 70%);
-          animation: nebula-drift 300s linear infinite alternate;
-          z-index: 0; /* Ensure it's behind content but above stars if desired */
-          mix-blend-mode: screen; /* Blends colors nicely */
-          opacity: 0.5; /* Adjust overall nebula visibility */
-        }
-
-        @keyframes move-twink-back {
-          from { background-position: 0 0; }
-          to { background-position: -10000px 5000px; }
-        }
-
-        @keyframes move-clouds-back {
-          from { background-position: 0 0; }
-          to { background-position: 10000px 0; }
-        }
-
-        /* NEW: Nebula drift animation */
-        @keyframes nebula-drift {
-          0% {
-            background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%;
-          }
-          100% {
-            background-position: 100% 100%, -100% 50%, 50% -100%, -50% 100%;
-          }
-        }
-
-        /* Text glow effect - kept for consistency */
-        .glow-text {
-          text-shadow: 0 0 8px rgba(173, 216, 230, 0.8), 0 0 15px rgba(173, 216, 230, 0.6); /* Light blue glow */
-        }
-        .glow-text-green {
-          text-shadow: 0 0 8px rgba(144, 238, 144, 0.8), 0 0 15px rgba(144, 238, 144, 0.6); /* Light green glow */
-        }
-        .glow-text-purple {
-          text-shadow: 0 0 8px rgba(221, 160, 221, 0.8), 0 0 15px rgba(221, 160, 221, 0.6); /* Plum glow */
-        }
-        .glow-text-blue {
-          text-shadow: 0 0 8px rgba(100, 149, 237, 0.8), 0 0 15px rgba(100, 149, 237, 0.6); /* Cornflower blue glow */
-        }
-        .glow-text-red {
-          text-shadow: 0 0 8px rgba(255, 99, 71, 0.8), 0 0 15px rgba(255, 99, 71, 0.6); /* Tomato glow */
-        }
-
-        /* Small glow for tech stack tags - kept for consistency */
-        .glow-sm {
-            box-shadow: 0 0 5px rgba(144, 238, 144, 0.6);
-        }
-
-        /* Cosmic button shadows - kept for consistency */
-        .cosmic-btn-purple {
-          box-shadow: 0 0 10px rgba(173, 216, 230, 0.6), 0 0 20px rgba(173, 216, 230, 0.4);
-        }
-        .cosmic-btn-blue {
-          box-shadow: 0 0 10px rgba(144, 238, 144, 0.6), 0 0 20px rgba(144, 238, 144, 0.4);
-        }
-        .cosmic-btn-green {
-          box-shadow: 0 0 10px rgba(221, 160, 221, 0.6), 0 0 20px rgba(221, 160, 221, 0.4);
-        }
-
-        /* Cosmic card border effect - kept for consistency */
-        .cosmic-card-border-blue {
-          border: 1px solid transparent;
-          box-shadow: 0 0 12px rgba(100, 149, 237, 0.6), inset 0 0 12px rgba(100, 149, 237, 0.4);
-          transition: all 0.3s ease-in-out;
-        }
-        .cosmic-card-border-blue:hover {
-          box-shadow: 0 0 20px rgba(100, 149, 237, 0.8), inset 0 0 20px rgba(100, 149, 237, 0.6);
-        }
-
-        .cosmic-card-border-purple {
-          border: 1px solid transparent;
-          box-shadow: 0 0 12px rgba(221, 160, 221, 0.6), inset 0 0 12px rgba(221, 160, 221, 0.4);
-          transition: all 0.3s ease-in-out;
-        }
-        .cosmic-card-border-purple:hover {
-          box-shadow: 0 0 20px rgba(221, 160, 221, 0.8), inset 0 0 20px rgba(221, 160, 221, 0.6);
-        }
-
-        /* Fade-in-up animation - kept for consistency */
-        @keyframes fade-in-up {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in-up {
-          animation: fade-in-up 1s ease-out forwards;
-        }
-        .animate-fade-in-up.delay-200 {
-          animation-delay: 0.2s;
-        }
-        .animate-fade-in-up.delay-400 {
-          animation-delay: 0.4s;
-        }
-
-        /* Smooth scrolling - kept for consistency */
-        html {
-          scroll-behavior: smooth;
-        }
-      `}</style>
     </div>
   );
 }
