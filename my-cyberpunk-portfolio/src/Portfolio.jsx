@@ -1,0 +1,495 @@
+import React, { useState } from 'react';
+import { Mail, User, Code, Briefcase, Sparkles, Send } from 'lucide-react'; // Importing icons from lucide-react
+
+// Main Portfolio component
+function Portfolio() {
+  // State for managing the contact form data
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  // State for managing the form submission status (loading, success, error)
+  const [formStatus, setFormStatus] = useState({
+    loading: false,
+    success: false,
+    error: false,
+    message: '',
+  });
+
+  // Handle input changes for the form fields
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus({ loading: true, success: false, error: false, message: '' });
+
+    try {
+      // IMPORTANT: Replace 'YOUR_BACKEND_API_URL' with the actual URL of your Node.js backend.
+      // For local development, this will likely be 'http://localhost:3001/send-email'.
+      // For deployment, it will be your deployed backend URL.
+      const response = await fetch('YOUR_BACKEND_API_URL/send-email', { // <<< REMEMBER TO UPDATE THIS!
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setFormStatus({ loading: false, success: true, error: false, message: data.message });
+        setFormData({ name: '', email: '', message: '' }); // Clear form on success
+      } else {
+        setFormStatus({ loading: false, success: false, error: true, message: data.message || 'Failed to send message.' });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setFormStatus({ loading: false, success: false, error: true, message: 'Network error. Please try again later.' });
+    }
+  };
+
+  return (
+    // Main container with cyberpunk theme styling
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-black text-gray-100 font-inter antialiased">
+      {/* Tailwind CSS CDN for styling - This makes Tailwind work without local setup */}
+      <script src="https://cdn.tailwindcss.com"></script>
+      {/* Google Fonts - Inter for a clean, modern look */}
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+      {/* Header/Navigation */}
+      <header className="fixed w-full z-50 bg-gray-900 bg-opacity-80 backdrop-blur-sm shadow-lg py-4 px-6 md:px-12">
+        <nav className="container mx-auto flex justify-between items-center">
+          <a href="#hero" className="text-3xl font-bold text-cyan-400 hover:text-cyan-300 transition-colors duration-300">
+            <span className="font-mono">&lt;</span><span className="text-purple-400">DEV</span><span className="font-mono">/&gt;</span>
+          </a>
+          <ul className="flex space-x-6 md:space-x-10">
+            <li><a href="#about" className="text-lg text-gray-300 hover:text-green-400 transition-colors duration-300">About</a></li>
+            <li><a href="#skills" className="text-lg text-gray-300 hover:text-purple-400 transition-colors duration-300">Skills</a></li>
+            <li><a href="#projects" className="text-lg text-gray-300 hover:text-cyan-400 transition-colors duration-300">Projects</a></li>
+            <li><a href="#contact" className="text-lg text-gray-300 hover:text-red-400 transition-colors duration-300">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <section id="hero" className="relative h-screen flex items-center justify-center text-center px-4 overflow-hidden">
+        {/* Background glitch effect (simulated with pseudo-elements or subtle animations) */}
+        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: "url('https://placehold.co/1920x1080/0A0A0A/1A1A1A?text=CYBERPUNK+GRID')" }}></div>
+        <div className="relative z-10">
+          <h1 className="text-5xl md:text-7xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-green-400 animate-pulse-light">
+            <span className="block glitch" data-text="Welcome to my">Welcome to my</span>
+            <span className="block glitch" data-text="Cybernetic Domain">Cybernetic Domain</span>
+          </h1>
+          <p className="mt-4 text-xl md:text-2xl text-gray-300 font-light tracking-wide">
+            I am a <span className="text-green-400 font-medium">B.Tech CSE Student</span> at LPU.
+            <br />Crafting digital realities one line of code at a time.
+          </p>
+          <div className="mt-8 flex justify-center space-x-4">
+            <a href="#projects" className="px-6 py-3 bg-purple-600 text-white rounded-lg shadow-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 neon-shadow-purple">
+              View My Work
+            </a>
+            <a href="#contact" className="px-6 py-3 bg-cyan-600 text-white rounded-lg shadow-lg hover:bg-cyan-700 transition-all duration-300 transform hover:scale-105 neon-shadow-cyan">
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-20 px-6 md:px-12 bg-gray-900 border-t border-b border-gray-800">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-4xl font-bold text-center text-green-400 mb-12 neon-text-green">
+            <User className="inline-block mr-3 mb-1" size={36} />About Me<span className="text-gray-600">_</span>
+          </h2>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="text-lg leading-relaxed text-gray-300 space-y-4">
+              <p>
+                As a passionate B.Tech CSE student at LPU, I delve deep into the world of technology, constantly seeking to expand my knowledge and build innovative solutions. My journey is fueled by curiosity and a drive to transform complex ideas into elegant, functional code.
+              </p>
+              <p>
+                I thrive in dynamic environments where I can apply my problem-solving skills and contribute to impactful projects. My focus areas include web development, with a keen interest in creating engaging user experiences and robust backend systems.
+              </p>
+              <p>
+                Beyond coding, I enjoy exploring new tech trends, contributing to open-source projects, and collaborating with fellow enthusiasts. I believe in continuous learning and adapting to the ever-evolving tech landscape.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src="https://placehold.co/300x300/1A1A1A/00FF00?text=YOUR+PROFILE+PIC"
+                alt="Profile Picture"
+                className="rounded-full border-4 border-purple-500 shadow-xl transform hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-20 px-6 md:px-12 bg-black border-t border-b border-gray-800">
+        <div className="container mx-auto max-w-5xl">
+          <h2 className="text-4xl font-bold text-center text-purple-400 mb-12 neon-text-purple">
+            <Code className="inline-block mr-3 mb-1" size={36} />My Skill Matrix<span className="text-gray-600">_</span>
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {/* Skill Card Example */}
+            {[
+              { name: 'React.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+              { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
+              { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+              { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+              { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+              { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original-wordmark.svg' },
+              { name: 'Express.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
+              { name: 'MongoDB', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg' },
+              { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
+              { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
+            ].map((skill, index) => (
+              <div key={index} className="bg-gray-800 p-6 rounded-xl shadow-lg flex flex-col items-center justify-center transform hover:scale-105 transition-transform duration-300 neon-border-cyan">
+                <img src={skill.icon} alt={skill.name} className="w-16 h-16 mb-4" />
+                <h3 className="text-xl font-semibold text-gray-200">{skill.name}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-20 px-6 md:px-12 bg-gray-900 border-t border-b border-gray-800">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold text-center text-cyan-400 mb-12 neon-text-cyan">
+            <Briefcase className="inline-block mr-3 mb-1" size={36} />My Digital Creations<span className="text-gray-600">_</span>
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {/* Project Card Example */}
+            {[
+              {
+                title: 'AI Chatbot Interface',
+                description: 'A responsive web interface for an AI chatbot, featuring real-time message display and user input handling.',
+                tech: ['React', 'Tailwind CSS', 'Node.js'],
+                link: '#',
+                image: 'https://placehold.co/400x250/2A2A2A/00FFFF?text=Chatbot+UI'
+              },
+              {
+                title: 'E-commerce Dashboard',
+                description: 'Admin dashboard for an e-commerce platform with sales analytics, product management, and user roles.',
+                tech: ['React', 'Chart.js', 'Express'],
+                link: '#',
+                image: 'https://placehold.co/400x250/2A2A2A/FF00FF?text=E-commerce+Dashboard'
+              },
+              {
+                title: 'Task Management App',
+                description: 'A full-stack application for managing tasks, including user authentication, task creation, and categorization.',
+                tech: ['React', 'Node.js', 'MongoDB'],
+                link: '#',
+                image: 'https://placehold.co/400x250/2A2A2A/00FF00?text=Task+Manager'
+              },
+              {
+                title: 'Decentralized Voting System',
+                description: 'A blockchain-based voting system ensuring transparency and immutability of votes using smart contracts.',
+                tech: ['Solidity', 'React', 'Web3.js'],
+                link: '#',
+                image: 'https://placehold.co/400x250/2A2A2A/FFFF00?text=Blockchain+Voting'
+              },
+              {
+                title: 'Real-time Data Visualizer',
+                description: 'An application that visualizes real-time data streams using WebSockets and D3.js for interactive charts.',
+                tech: ['React', 'D3.js', 'WebSockets'],
+                link: '#',
+                image: 'https://placehold.co/400x250/2A2A2A/FF8C00?text=Data+Viz'
+              },
+              {
+                title: 'Portfolio V1 (This one!)',
+                description: 'My personal portfolio website, designed with a cyberpunk aesthetic to showcase my skills and projects.',
+                tech: ['React', 'Tailwind CSS', 'Node.js', 'Nodemailer'],
+                link: '#',
+                image: 'https://placehold.co/400x250/2A2A2A/8A2BE2?text=Portfolio+V1'
+              },
+            ].map((project, index) => (
+              <div key={index} className="bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 neon-border-purple">
+                <img src={project.image} alt={project.title} className="w-full h-48 object-cover border-b border-gray-700" onError={(e) => { e.target.onerror = null; e.target.src = "https://placehold.co/400x250/2A2A2A/CCCCCC?text=Image+Error"; }} />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-cyan-300 mb-2">{project.title}</h3>
+                  <p className="text-gray-400 text-sm mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tech.map((tech, idx) => (
+                      <span key={idx} className="bg-gray-700 text-xs text-green-300 px-3 py-1 rounded-full neon-shadow-green-sm">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-purple-400 hover:text-purple-300 font-medium transition-colors duration-300">
+                    View Project <Sparkles className="ml-2" size={18} />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 px-6 md:px-12 bg-black border-t border-b border-gray-800">
+        <div className="container mx-auto max-w-2xl">
+          <h2 className="text-4xl font-bold text-center text-red-400 mb-12 neon-text-red">
+            <Mail className="inline-block mr-3 mb-1" size={36} />Connect with Me<span className="text-gray-600">_</span>
+          </h2>
+          <form onSubmit={handleSubmit} className="bg-gray-800 p-8 rounded-xl shadow-lg neon-border-cyan">
+            <div className="mb-6">
+              <label htmlFor="name" className="block text-gray-300 text-lg font-medium mb-2">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-transparent focus:border-cyan-500 transition-all duration-200"
+                placeholder="Enter your name"
+              />
+            </div>
+            <div className="mb-6">
+              <label htmlFor="email" className="block text-gray-300 text-lg font-medium mb-2">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-transparent focus:border-cyan-500 transition-all duration-200"
+                placeholder="Enter your email"
+              />
+            </div>
+            <div className="mb-6">
+              <label htmlFor="message" className="block text-gray-300 text-lg font-medium mb-2">
+                Message <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows="6"
+                className="w-full px-4 py-3 bg-gray-700 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 border border-transparent focus:border-cyan-500 transition-all duration-200 resize-y"
+                placeholder="Your message here..."
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-lg shadow-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-105 neon-shadow-green disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={formStatus.loading}
+            >
+              {formStatus.loading ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Send Message <Send className="ml-2" size={20} />
+                </>
+              )}
+            </button>
+
+            {/* Form Status Messages */}
+            {formStatus.success && (
+              <div className="mt-4 p-3 bg-green-800 text-white rounded-lg text-center">
+                {formStatus.message}
+              </div>
+            )}
+            {formStatus.error && (
+              <div className="mt-4 p-3 bg-red-800 text-white rounded-lg text-center">
+                {formStatus.message}
+              </div>
+            )}
+          </form>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 px-6 md:px-12 bg-gray-950 text-center text-gray-500 text-sm">
+        <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved. // <span className="text-purple-400">Built with React & Node.js</span></p>
+      </footer>
+
+      {/* Custom CSS for glitch effect and neon shadows */}
+      <style jsx="true">{`
+        /* Glitch effect for hero text */
+        .glitch {
+          position: relative;
+          color: #fff;
+          mix-blend-mode: lighten;
+          animation: glitch-skew 1s infinite alternate cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .glitch::before,
+        .glitch::after {
+          content: attr(data-text);
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        .glitch::before {
+          left: 2px;
+          text-shadow: -2px 0 #0ff;
+          animation: glitch-anim-1 1s infinite alternate-reverse cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .glitch::after {
+          left: -2px;
+          text-shadow: -2px 0 #f0f;
+          animation: glitch-anim-2 1s infinite alternate-reverse cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        @keyframes glitch-anim-1 {
+          0% {
+            transform: translate(0);
+          }
+          20% {
+            transform: translate(-2px, 2px);
+          }
+          40% {
+            transform: translate(-2px, -2px);
+          }
+          60% {
+            transform: translate(2px, 2px);
+          }
+          80% {
+            transform: translate(2px, -2px);
+          }
+          100% {
+            transform: translate(0);
+          }
+        }
+
+        @keyframes glitch-anim-2 {
+          0% {
+            transform: translate(0);
+          }
+          20% {
+            transform: translate(2px, -2px);
+          }
+          40% {
+            transform: translate(2px, 2px);
+          }
+          60% {
+            transform: translate(-2px, -2px);
+          }
+          80% {
+            transform: translate(-2px, 2px);
+          }
+          100% {
+            transform: translate(0);
+          }
+        }
+
+        @keyframes glitch-skew {
+          0% {
+            transform: skew(0deg);
+          }
+          20% {
+            transform: skew(-2deg);
+          }
+          40% {
+            transform: skew(2deg);
+          }
+          60% {
+            transform: skew(-1deg);
+          }
+          80% {
+            transform: skew(1deg);
+          }
+          100% {
+            transform: skew(0deg);
+          }
+        }
+
+        /* Neon text shadows */
+        .neon-text-green {
+          text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0, 0 0 20px #0f0;
+        }
+        .neon-text-purple {
+          text-shadow: 0 0 5px #8a2be2, 0 0 10px #8a2be2, 0 0 15px #8a2be2, 0 0 20px #8a2be2;
+        }
+        .neon-text-cyan {
+          text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 15px #0ff, 0 0 20px #0ff;
+        }
+        .neon-text-red {
+          text-shadow: 0 0 5px #f00, 0 0 10px #f00, 0 0 15px #f00, 0 0 20px #f00;
+        }
+
+        /* Neon button shadows */
+        .neon-shadow-purple {
+          box-shadow: 0 0 8px #8a2be2, 0 0 15px #8a2be2;
+        }
+        .neon-shadow-cyan {
+          box-shadow: 0 0 8px #0ff, 0 0 15px #0ff;
+        }
+        .neon-shadow-green {
+          box-shadow: 0 0 8px #0f0, 0 0 15px #0f0;
+        }
+        .neon-shadow-green-sm {
+          box-shadow: 0 0 5px #0f0;
+        }
+
+        /* Neon border effect */
+        .neon-border-cyan {
+          border: 1px solid transparent;
+          box-shadow: 0 0 10px #0ff, inset 0 0 10px #0ff;
+          transition: all 0.3s ease-in-out;
+        }
+        .neon-border-cyan:hover {
+          box-shadow: 0 0 15px #0ff, inset 0 0 15px #0ff;
+        }
+
+        .neon-border-purple {
+          border: 1px solid transparent;
+          box-shadow: 0 0 10px #8a2be2, inset 0 0 10px #8a2be2;
+          transition: all 0.3s ease-in-out;
+        }
+        .neon-border-purple:hover {
+          box-shadow: 0 0 15px #8a2be2, inset 0 0 15px #8a2be2;
+        }
+
+        /* Pulse light animation */
+        @keyframes pulse-light {
+          0%, 100% {
+            filter: brightness(1);
+          }
+          50% {
+            filter: brightness(1.5);
+          }
+        }
+        .animate-pulse-light {
+          animation: pulse-light 3s infinite ease-in-out;
+        }
+
+        /* Smooth scrolling */
+        html {
+          scroll-behavior: smooth;
+        }
+      `}</style>
+    </div>
+  );
+}
+
+export default Portfolio;
