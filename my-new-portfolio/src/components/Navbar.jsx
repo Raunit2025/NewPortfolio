@@ -6,15 +6,13 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <nav className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-slate-800 shadow-lg' : 'bg-transparent'}`}>
+    <nav className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled ? 'bg-slate-900/50 backdrop-blur-lg border-b border-slate-300/10' : 'bg-transparent'}`}>
       <div className="container mx-auto flex justify-between items-center p-4">
         <a href="#hero" className="text-2xl font-bold text-blue-500">Raunit Raj</a>
         <div className="hidden md:flex space-x-8 items-center">
@@ -24,17 +22,17 @@ const Navbar = () => {
           <a href="#contact" className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md transition-colors">Contact</a>
         </div>
         <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-2xl">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-2xl z-50">
             {isOpen ? <FaTimes /> : <FaBars />}
           </button>
         </div>
       </div>
       {isOpen && (
-        <div className="md:hidden bg-slate-800">
-          <a href="#about" className="block p-4 hover:bg-slate-700 transition-colors" onClick={() => setIsOpen(false)}>About</a>
-          <a href="#skills" className="block p-4 hover:bg-slate-700 transition-colors" onClick={() => setIsOpen(false)}>Skills</a>
-          <a href="#projects" className="block p-4 hover:bg-slate-700 transition-colors" onClick={() => setIsOpen(false)}>Projects</a>
-          <a href="#contact" className="block p-4 hover:bg-slate-700 transition-colors" onClick={() => setIsOpen(false)}>Contact</a>
+        <div className="md:hidden bg-slate-900/80 backdrop-blur-lg">
+          <a href="#about" className="block p-4 hover:bg-slate-700/50" onClick={() => setIsOpen(false)}>About</a>
+          <a href="#skills" className="block p-4 hover:bg-slate-700/50" onClick={() => setIsOpen(false)}>Skills</a>
+          <a href="#projects" className="block p-4 hover:bg-slate-700/50" onClick={() => setIsOpen(false)}>Projects</a>
+          <a href="#contact" className="block p-4 hover:bg-slate-700/50" onClick={() => setIsOpen(false)}>Contact</a>
         </div>
       )}
     </nav>

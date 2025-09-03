@@ -2,6 +2,7 @@ import { DiJavascript1, DiReact, DiNodejsSmall, DiMongodb, DiSwift, DiPhp, DiLar
 import { SiMysql, SiTailwindcss, SiTypescript } from 'react-icons/si';
 import { motion } from 'framer-motion';
 
+// ... (skills array remains the same)
 const skills = [
   { icon: <DiJavascript1 className="text-yellow-400" />, name: 'JavaScript' },
   { icon: <SiTypescript className="text-blue-500" />, name: 'TypeScript' },
@@ -28,9 +29,10 @@ const itemVariants = {
   visible: { y: 0, opacity: 1 },
 };
 
+
 const Skills = () => {
   return (
-    <section id="skills" className="py-20 bg-slate-800">
+    <section id="skills" className="py-20">
       <h2 className="text-4xl font-bold text-center mb-12 font-heading">My Tech <span className="text-blue-500">Stack</span></h2>
       <motion.div
         variants={containerVariants}
@@ -43,7 +45,7 @@ const Skills = () => {
           <motion.div
             key={skill.name}
             variants={itemVariants}
-            className="flex flex-col items-center justify-center p-6 bg-slate-900 rounded-lg shadow-lg transform hover:scale-110 transition-transform"
+            className="flex flex-col items-center justify-center p-6 bg-slate-800/50 backdrop-blur-lg rounded-lg border border-slate-300/10 shadow-lg transform hover:scale-110 hover:border-blue-500/50 transition-all duration-300"
           >
             <div className="text-7xl mb-4">{skill.icon}</div>
             <p className="text-lg font-semibold">{skill.name}</p>

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import Typewriter from 'typewriter-effect'; // Import it
 
 const Hero = () => {
   return (
@@ -11,14 +12,23 @@ const Hero = () => {
       >
         Hi, I&apos;m <span className="text-blue-500">Raunit Raj</span>
       </motion.h1>
-      <motion.p
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        className="text-xl md:text-3xl mb-8 max-w-3xl text-slate-300"
-      >
-        A passionate <span className="font-bold text-slate-100">Full-Stack Developer</span> creating modern and responsive web applications.
-      </motion.p>
+      
+      {/* Typewriter Effect */}
+      <div className="text-xl md:text-3xl mb-8 max-w-3xl text-slate-300">
+        <Typewriter
+          options={{
+            strings: [
+              'A passionate Full-Stack Developer.',
+              'I build modern web applications.',
+              'I create awesome mobile apps.',
+            ],
+            autoStart: true,
+            loop: true,
+            delay: 75,
+          }}
+        />
+      </div>
+
       <motion.a
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}

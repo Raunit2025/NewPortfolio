@@ -28,6 +28,7 @@ const projects = [
   },
 ];
 
+
 const Projects = () => {
   return (
     <section id="projects" className="py-20">
@@ -36,11 +37,12 @@ const Projects = () => {
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            className="bg-slate-800 rounded-lg overflow-hidden shadow-lg"
+            className="bg-slate-800/50 backdrop-blur-lg rounded-lg overflow-hidden border border-slate-300/10 shadow-lg"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
             viewport={{ once: true }}
+            whileHover={{ scale: 1.03, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)" }} // Subtle lift on hover
           >
             <img src={project.image} alt={project.title} className="w-full h-56 object-cover" />
             <div className="p-6">
@@ -48,7 +50,7 @@ const Projects = () => {
               <p className="text-slate-400 mb-4">{project.description}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tags.map((tag) => (
-                  <span key={tag} className="bg-slate-700 text-slate-300 text-sm font-semibold px-2 py-1 rounded">
+                  <span key={tag} className="bg-slate-700/50 text-slate-300 text-sm font-semibold px-2 py-1 rounded">
                     {tag}
                   </span>
                 ))}
