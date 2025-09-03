@@ -36,17 +36,13 @@ function App() {
       <AnimatePresence>
         {isPaletteOpen && <CommandPalette setIsOpen={setIsPaletteOpen} />}
       </AnimatePresence>
-      
       <ParticleBackground />
       <Spotlight />
       <ScrollToTop />
       <div className="relative z-20">
         <Navbar />
         <main className="container mx-auto px-6 md:px-12">
-          {/* We don't wrap the Hero section to keep its initial animation clean */}
           <Hero /> 
-          
-          {/* Wrap each subsequent section */}
           <ScrollAnimationWrapper>
             <About />
           </ScrollAnimationWrapper>
