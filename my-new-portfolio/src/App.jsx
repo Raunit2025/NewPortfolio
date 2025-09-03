@@ -1,28 +1,33 @@
-// raunit2025/newportfolio/NewPortfolio-82b8d0f1a952129aa077fe44ffdd18a28a751314/my-new-portfolio/src/App.jsx
+import { useState } from 'react'; // Import useState
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
 import Certificates from './components/Certificates';
 import Education from './components/Education';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
 import Spotlight from './components/Spotlight';
+import ScrollToTop from './components/ScrollToTop'; // Import ScrollToTop
 
 function App() {
+  const [selectedSkill, setSelectedSkill] = useState('All'); // Add state for the filter
+
   return (
-    <div className="bg-slate-900 text-slate-100 font-sans relative"> {/* Re-add bg-slate-900 */}
+    <div className="bg-slate-900 text-slate-100 font-sans relative">
       <ParticleBackground />
       <Spotlight />
+      <ScrollToTop /> {/* Add the button here */}
       <div className="relative z-20">
         <Navbar />
         <main className="container mx-auto px-6 md:px-12">
           <Hero />
           <About />
-          <Skills />
-          <Projects />
+          {/* Pass state management functions to Skills and Projects */}
+          <Skills selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
+          <Projects selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
           <Certificates />
           <Education />
           <Contact />
