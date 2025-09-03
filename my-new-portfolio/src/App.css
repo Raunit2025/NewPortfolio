@@ -14,3 +14,11 @@ html{
   z-index: 10;
   transition: background 0.2s ease-out;
 }
+
+.command-palette-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+}

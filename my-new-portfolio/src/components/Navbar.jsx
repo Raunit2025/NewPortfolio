@@ -21,6 +21,7 @@ const Navbar = () => {
           <a href="#projects" className="hover:text-blue-500 transition-colors">Projects</a>
           <a href="#certificates" className="hover:text-blue-500 transition-colors">Certificates</a>
           <a href="#education" className="hover:text-blue-500 transition-colors">Education</a>
+          <a href="#stats" className="hover:text-blue-500 transition-colors">Stats</a>
           <a href="#contact" className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-md transition-colors">Contact</a>
         </div>
         <div className="md:hidden">
@@ -36,6 +37,7 @@ const Navbar = () => {
           <a href="#projects" className="block p-4 hover:bg-slate-700/50" onClick={() => setIsOpen(false)}>Projects</a>
           <a href="#certificates" className="block p-4 hover:bg-slate-700/50" onClick={() => setIsOpen(false)}>Certificates</a>
           <a href="#education" className="block p-4 hover:bg-slate-700/50" onClick={() => setIsOpen(false)}>Education</a>
+          <a href="#stats" className="block p-4 hover:bg-slate-700/50" onClick={() => setIsOpen(false)}>Stats</a>
           <a href="#contact" className="block p-4 hover:bg-slate-700/50" onClick={() => setIsOpen(false)}>Contact</a>
         </div>
       )}

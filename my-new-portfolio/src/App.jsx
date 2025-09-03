@@ -1,4 +1,5 @@
-import { useState } from 'react'; // Import useState
+import { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,30 +8,66 @@ import Projects from './components/Projects';
 import Certificates from './components/Certificates';
 import Education from './components/Education';
 import Contact from './components/Contact';
+import CodingStats from './components/CodingStats';
 import Footer from './components/Footer';
 import ParticleBackground from './components/ParticleBackground';
 import Spotlight from './components/Spotlight';
-import ScrollToTop from './components/ScrollToTop'; // Import ScrollToTop
+import ScrollToTop from './components/ScrollToTop';
+import CommandPalette from './components/CommandPalette';
+import ScrollAnimationWrapper from './components/ScrollAnimationWrapper';
 
 function App() {
-  const [selectedSkill, setSelectedSkill] = useState('All'); // Add state for the filter
+  const [selectedSkill, setSelectedSkill] = useState('All');
+  const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsPaletteOpen((open) => !open);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className="bg-slate-900 text-slate-100 font-sans relative">
+      <AnimatePresence>
+        {isPaletteOpen && <CommandPalette setIsOpen={setIsPaletteOpen} />}
+      </AnimatePresence>
+      
       <ParticleBackground />
       <Spotlight />
-      <ScrollToTop /> {/* Add the button here */}
+      <ScrollToTop />
       <div className="relative z-20">
         <Navbar />
         <main className="container mx-auto px-6 md:px-12">
-          <Hero />
-          <About />
-          {/* Pass state management functions to Skills and Projects */}
-          <Skills selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
-          <Projects selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
-          <Certificates />
-          <Education />
-          <Contact />
+          {/* We don't wrap the Hero section to keep its initial animation clean */}
+          <Hero /> 
+          
+          {/* Wrap each subsequent section */}
+          <ScrollAnimationWrapper>
+            <About />
+          </ScrollAnimationWrapper>
+          <ScrollAnimationWrapper>
+            <Skills selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
+          </ScrollAnimationWrapper>
+          <ScrollAnimationWrapper>
+            <Projects selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
+          </ScrollAnimationWrapper>
+          <ScrollAnimationWrapper>
+            <Certificates />
+          </ScrollAnimationWrapper>
+          <ScrollAnimationWrapper>
+            <Education />
+          </ScrollAnimationWrapper>
+          <ScrollAnimationWrapper>
+            <CodingStats />
+          </ScrollAnimationWrapper>
+          <ScrollAnimationWrapper>
+            <Contact />
+          </ScrollAnimationWrapper>
         </main>
         <Footer />
       </div>
