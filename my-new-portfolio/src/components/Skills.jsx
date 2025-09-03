@@ -19,9 +19,7 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
+    transition: { staggerChildren: 0.1 },
   },
 };
 
@@ -32,25 +30,23 @@ const itemVariants = {
 
 const Skills = () => {
   return (
-    <section id="skills" className="py-20">
-      <motion.h2 /* ... add the whileInView animation from step 3 ... */>
-        My Tech Stack
-      </motion.h2>
+    <section id="skills" className="py-20 bg-slate-800">
+      <h2 className="text-4xl font-bold text-center mb-12 font-heading">My Tech <span className="text-blue-500">Stack</span></h2>
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center"
+        className="container mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center"
       >
         {skills.map((skill) => (
           <motion.div
             key={skill.name}
             variants={itemVariants}
-            className="flex flex-col items-center p-4 bg-gray-800 rounded-lg transform hover:scale-105 transition-transform"
+            className="flex flex-col items-center justify-center p-6 bg-slate-900 rounded-lg shadow-lg transform hover:scale-110 transition-transform"
           >
-            <div className="text-7xl mb-2">{skill.icon}</div>
-            <p className="text-lg">{skill.name}</p>
+            <div className="text-7xl mb-4">{skill.icon}</div>
+            <p className="text-lg font-semibold">{skill.name}</p>
           </motion.div>
         ))}
       </motion.div>
