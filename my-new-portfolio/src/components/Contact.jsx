@@ -1,3 +1,4 @@
+// raunit2025/newportfolio/NewPortfolio-82b8d0f1a952129aa077fe44ffdd18a28a751314/my-new-portfolio/src/components/Contact.jsx
 import { FaEnvelope, FaLinkedin, FaGithub } from "react-icons/fa";
 import { motion } from 'framer-motion';
 
@@ -12,9 +13,9 @@ const Contact = () => {
         </p>
         <div className="flex justify-center items-center space-x-8 text-5xl">
           <motion.a
-            href="mailto:your-email@example.com"
+            href="mailto:raunitraj2336@example.com"
             className="text-slate-400 hover:text-blue-500 transition-colors"
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ y: -8 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
             <FaEnvelope />
@@ -24,7 +25,7 @@ const Contact = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-400 hover:text-blue-500 transition-colors"
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ y: -8 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
             <FaLinkedin />
@@ -34,7 +35,7 @@ const Contact = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="text-slate-400 hover:text-blue-500 transition-colors"
-            whileHover={{ scale: 1.2 }}
+            whileHover={{ y: -8 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
             <FaGithub />

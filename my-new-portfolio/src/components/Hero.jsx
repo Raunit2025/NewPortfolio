@@ -1,5 +1,6 @@
+// raunit2025/newportfolio/NewPortfolio-82b8d0f1a952129aa077fe44ffdd18a28a751314/my-new-portfolio/src/components/Hero.jsx
 import { motion } from 'framer-motion';
-import Typewriter from 'typewriter-effect'; // Import it
+import Typewriter from 'typewriter-effect';
 
 const Hero = () => {
   return (
@@ -13,7 +14,6 @@ const Hero = () => {
         Hi, I&apos;m <span className="text-blue-500">Raunit Raj</span>
       </motion.h1>
       
-      {/* Typewriter Effect */}
       <div className="text-xl md:text-3xl mb-8 max-w-3xl text-slate-300">
         <Typewriter
           options={{
@@ -30,11 +30,25 @@ const Hero = () => {
       </div>
 
       <motion.a
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
         href="#contact"
-        className="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-transform transform hover:scale-105"
+        className="bg-blue-600 text-white font-bold py-3 px-8 rounded-full hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          scale: [1, 1.03, 1], // Keyframes for the pulse effect
+        }}
+        transition={{
+          default: { duration: 0.8, delay: 0.5 },
+          scale: {
+            duration: 2.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1.5, // Start pulsing after initial animation
+          },
+        }}
+        whileHover={{ scale: 1.1, transition: { duration: 0.2 } }} // Override scale on hover
+        whileTap={{ scale: 0.95 }}
       >
         Get in Touch
       </motion.a>
