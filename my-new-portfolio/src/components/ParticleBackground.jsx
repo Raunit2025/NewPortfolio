@@ -35,9 +35,9 @@ const ParticleBackground = () => {
           },
           modes: {
             repulse: {
-              distance: 80, // Smaller area of effect
-              duration: 1,   // The push-away animation takes 1 second, making it much slower
-              speed: 0.2,    // The speed of the repulse is very slow
+              distance: 100,
+              duration: 0.4,
+              speed: 0.5,
             },
           },
         },
@@ -47,7 +47,7 @@ const ParticleBackground = () => {
             color: '#4a5568',
             distance: 150,
             enable: true,
-            opacity: 0.2,
+            opacity: 0.5,
             width: 1,
           },
           collisions: { enable: true },
@@ -56,12 +56,12 @@ const ParticleBackground = () => {
             enable: true,
             outModes: { default: 'bounce' },
             random: false,
-            speed: 0.5, // Slowed down the base particle speed
+            speed: 0.5,
             straight: false,
           },
           number: {
             density: { enable: true, area: 800 },
-            value: 80,
+            value: 100,
           },
           opacity: { value: 0.2 },
           shape: { type: 'circle' },
