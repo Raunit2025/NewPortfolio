@@ -21,7 +21,7 @@ const Contact = () => {
     setStatus('Sending...');
 
     try {
-      const response = await fetch('http://localhost:5000/api/send', {
+      const response = await fetch('/api/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

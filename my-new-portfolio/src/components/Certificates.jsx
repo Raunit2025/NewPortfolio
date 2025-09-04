@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
-import { FaExternalLinkAlt } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaExternalLinkAlt, FaTimes } from 'react-icons/fa';
+import { useState } from 'react';
 
 const certificates = [
   {
@@ -39,6 +40,8 @@ const itemVariants = {
 };
 
 const Certificates = () => {
+  const [selectedImage, setSelectedImage] = useState(null);
+
   return (
     <section id="certificates" className="py-20">
       <div className="text-center mb-12">
@@ -67,12 +70,13 @@ const Certificates = () => {
           <motion.div
             key={index}
             variants={itemVariants}
-            className="bg-slate-800/50 backdrop-blur-lg rounded-lg overflow-hidden border border-slate-300/10 shadow-lg group"
+            className="bg-slate-800/50 backdrop-blur-lg rounded-lg overflow-hidden border border-slate-300/10 shadow-lg group cursor-pointer"
             whileHover={{ 
               scale: 1.03, 
               boxShadow: "0 0 25px -5px rgba(59, 130, 246, 0.4), 0 8px 10px -6px rgba(59, 130, 246, 0.2)" 
             }}
             transition={{ duration: 0.3 }}
+            onClick={() => setSelectedImage(cert.imageUrl)}
           >
             <div className="relative">
               <img src={cert.imageUrl} alt={cert.title} className="w-full h-56 object-cover" />
@@ -93,6 +97,33 @@ const Certificates = () => {
           </motion.div>
         ))}
       </motion.div>
+
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.5 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.5 }}
+              className="relative"
+            >
+              <img src={selectedImage} alt="Certificate" className="max-w-[90vw] max-h-[90vh] rounded-lg" />
+              <button 
+                onClick={() => setSelectedImage(null)} 
+                className="absolute top-4 right-4 text-white text-2xl"
+              >
+                <FaTimes />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

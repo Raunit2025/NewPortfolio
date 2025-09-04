@@ -10,8 +10,7 @@ export default defineConfig([
   globalIgnores(['dist']),
   {
     // Configuration for React files
-    files: ['**/*.{js,jsx}'],
-    ignores: ['server.js'], // Ignore server.js from this config
+    files: ['src/**/*.{js,jsx}'],
     plugins: {
       react: reactPlugin,
       'react-hooks': reactHooks,
@@ -44,12 +43,13 @@ export default defineConfig([
     },
   },
   {
-    // Configuration specifically for server.js
-    files: ['server.js'],
+    // Configuration specifically for server-side files (old server.js and new Netlify functions)
+    files: ['server.js', 'netlify/functions/**/*.js'],
     languageOptions: {
       globals: {
         ...globals.node, // Use Node.js globals
       },
+      sourceType: 'module'
     },
     rules: {
       ...js.configs.recommended.rules,
