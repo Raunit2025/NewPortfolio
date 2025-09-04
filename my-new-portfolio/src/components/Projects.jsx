@@ -9,7 +9,7 @@ const allProjects = [
     description: 'A brief description of Project One, highlighting the problem it solves and the technologies used.',
     tags: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
     imageUrl: 'https://via.placeholder.com/1200x800/1e293b/94a3b8?text=Project+One',
-    videoUrl: 'Videos/Project1.mp4',
+    videoUrl: 'path/to/your/project-one-video.mp4',
     liveUrl: '#',
     githubUrl: '#',
   },
@@ -18,7 +18,7 @@ const allProjects = [
     description: 'Describe another key project. Mention your role and the main features you implemented.',
     tags: ['Laravel', 'PHP', 'MySQL', 'REST API'],
     imageUrl: 'https://via.placeholder.com/1200x800/334155/e2e8f0?text=Project+Two',
-    videoUrl: 'https://cdn.coverr.co/videos/coverr-a-developer-in-a-dark-room-4879/1080p.mp4',
+    videoUrl: 'path/to/your/project-two-video.mp4',
     liveUrl: '#',
     githubUrl: '#',
   },
@@ -27,16 +27,16 @@ const allProjects = [
     description: 'Showcase an app you built. Talk about the development process and challenges overcome.',
     tags: ['Swift', 'UIKit', 'iOS'],
     imageUrl: 'https://via.placeholder.com/1200x800/0f172a/64748b?text=Project+Three',
-    videoUrl: 'https://cdn.coverr.co/videos/coverr-a-person-using-a-mobile-phone-in-a-black-background-5396/1080p.mp4',
+    videoUrl: 'path/to/your/project-three-video.mp4',
     liveUrl: '#',
     githubUrl: '#',
   },
-  {
+    {
     title: 'Project Four',
     description: 'This project also uses React and is super cool.',
     tags: ['React', 'TypeScript'],
     imageUrl: 'https://via.placeholder.com/1200x800/475569/cbd5e1?text=Project+Four',
-    videoUrl: 'https://cdn.coverr.co/videos/coverr-programming-on-a-laptop-4486/1080p.mp4',
+    videoUrl: 'path/to/your/project-four-video.mp4',
     liveUrl: '#',
     githubUrl: '#',
   },
@@ -137,18 +137,9 @@ const Projects = ({ selectedSkill, setSelectedSkill }) => {
                       transition={{ delay: 0.2 }}
                       className="flex-grow flex flex-col justify-center"
                     >
-                      {/* --- FINAL VIDEO CONTAINER --- */}
-                      <div className="w-full h-full rounded-lg mb-4 overflow-hidden video-glow">
-                        <video
-                          src={project.videoUrl}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          className="w-full h-full rounded-lg"
-                        />
+                      <div className="w-full h-48 bg-black/50 rounded-lg mb-4 flex items-center justify-center">
+                        <p className="text-slate-400">Project Video Placeholder</p>
                       </div>
-                      {/* --- END FINAL VIDEO CONTAINER --- */}
                       <p className="text-slate-300 mb-4">{project.description}</p>
                       <div className="flex items-center space-x-4">
                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center text-blue-400 hover:underline">

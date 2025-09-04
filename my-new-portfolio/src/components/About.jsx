@@ -1,3 +1,4 @@
+// raunit2025/newportfolio/NewPortfolio-82b8d0f1a952129aa077fe44ffdd18a28a751314/my-new-portfolio/src/components/About.jsx
 import { motion } from 'framer-motion';
 
 const About = () => {
@@ -27,7 +28,7 @@ const About = () => {
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 w-full">
           <motion.img
-            src="Profile.jpg"
+            src="https://via.placeholder.com/300"
             alt="Raunit Raj"
             className="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-blue-500"
             variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1 } }}
