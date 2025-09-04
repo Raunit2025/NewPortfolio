@@ -3,24 +3,24 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const certificates = [
   {
-    title: 'Full-Stack Web Development',
+    title: 'Meta Full-Stack Engineer',
     issuer: 'Coursera',
     date: 'Issued June 2024',
-    imageUrl: 'https://via.placeholder.com/400x250/1e293b/94a3b8?text=Full-Stack+Certificate',
+    imageUrl: 'https://via.placeholder.com/400x250/1e293b/94a3b8?text=Meta+Full-Stack',
     verifyUrl: '#',
   },
   {
-    title: 'Advanced React & Redux',
+    title: 'Advanced React',
     issuer: 'Udemy',
     date: 'Issued Feb 2024',
-    imageUrl: 'https://via.placeholder.com/400x250/1e293b/94a3b8?text=React+Certificate',
+    imageUrl: 'https://via.placeholder.com/400x250/1e293b/94a3b8?text=Advanced+React',
     verifyUrl: '#',
   },
   {
-    title: 'iOS App Development with Swift',
-    issuer: 'Udacity',
+    title: 'iOS & Swift - The Complete iOS App Development Bootcamp',
+    issuer: 'Udemy',
     date: 'Issued Nov 2023',
-    imageUrl: 'https://via.placeholder.com/400x250/1e293b/94a3b8?text=iOS+Certificate',
+    imageUrl: 'https://via.placeholder.com/400x250/1e293b/94a3b8?text=iOS+%26+Swift',
     verifyUrl: '#',
   },
 ];

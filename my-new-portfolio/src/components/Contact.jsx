@@ -125,7 +125,7 @@ const Contact = () => {
           <p className="text-slate-400 mb-6">Or connect with me on social media</p>
           <div className="flex justify-center items-center space-x-8 text-4xl">
             <motion.a
-              href="#" // <-- Add your GitHub URL here
+              href="https://github.com/raunit2025"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-blue-500 transition-colors"

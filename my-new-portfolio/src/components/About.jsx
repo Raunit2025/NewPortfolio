@@ -9,7 +9,7 @@ const About = () => {
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
         transition={{ staggerChildren: 0.3 }}
-        className="flex flex-col items-center" 
+        className="flex flex-col items-center"
       >
         <div className="relative mb-12">
           <motion.h2
@@ -28,7 +28,7 @@ const About = () => {
 
         <div className="flex flex-col md:flex-row items-center justify-center gap-12 w-full">
           <motion.img
-            src="https://via.placeholder.com/300"
+            src="Images/Profile.jpg"
             alt="Raunit Raj"
             className="rounded-full w-48 h-48 md:w-64 md:h-64 object-cover border-4 border-blue-500"
             variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1 } }}
@@ -40,10 +40,10 @@ const About = () => {
             className="max-w-2xl text-center md:text-left text-slate-300"
           >
             <p className="text-lg mb-4">
-              I am a Computer Science and Engineering student with a passion for building beautiful and functional web and mobile applications.
+              I am a Computer Science and Engineering student with a passion for building beautiful and functional web and mobile applications. I thrive on solving real-world problems and turning ideas into tangible products.
             </p>
             <p className="text-lg">
-              With experience in full-stack development using the MERN stack and Laravel, as well as native app development with Swift, I am always eager to learn new technologies and take on new challenges.
+              With experience in full-stack development using the MERN stack and Laravel, as well as native app development with Swift, I am always eager to learn new technologies and take on new challenges. I enjoy the entire development process, from the initial concept to the final deployment.
             </p>
           </motion.div>
         </div>
