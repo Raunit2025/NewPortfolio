@@ -9,7 +9,9 @@ import { defineConfig, globalIgnores } from 'eslint/config';
 export default defineConfig([
   globalIgnores(['dist']),
   {
+    // Configuration for React files
     files: ['**/*.{js,jsx}'],
+    ignores: ['server.js'], // Ignore server.js from this config
     plugins: {
       react: reactPlugin,
       'react-hooks': reactHooks,
@@ -35,10 +37,22 @@ export default defineConfig([
       ...reactPlugin.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
       'react/react-in-jsx-scope': 'off',
-      'react/jsx-uses-vars': 'error', 
-      'react/prop-types': 'off', // <-- ADD THIS LINE
+      'react/jsx-uses-vars': 'error',
+      'react/prop-types': 'off',
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       'react-refresh/only-export-components': 'warn',
     },
   },
+  {
+    // Configuration specifically for server.js
+    files: ['server.js'],
+    languageOptions: {
+      globals: {
+        ...globals.node, // Use Node.js globals
+      },
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+    }
+  }
 ]);

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { useSkill } from '../contexts/SkillContext';
 
 // Data for projects
 const allProjects = [
@@ -58,7 +59,9 @@ const skills = [
   { name: 'TypeScript' },
 ];
 
-const Projects = ({ selectedSkill, setSelectedSkill }) => {
+const Projects = () => {
+  // Use the context instead of props
+  const { selectedSkill, setSelectedSkill } = useSkill();
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const projectsSectionRef = useRef(null);
 

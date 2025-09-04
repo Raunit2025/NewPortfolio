@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { FaSearch, FaHome, FaUser, FaCode, FaProjectDiagram, FaCertificate, FaGraduationCap, FaEnvelope } from 'react-icons/fa';
 
@@ -15,31 +15,29 @@ const commands = [
 const CommandPalette = ({ setIsOpen }) => {
   const [input, setInput] = useState('');
 
-  const filteredCommands = input === ''
-    ? commands
-    : commands.filter(c => c.name.toLowerCase().includes(input.toLowerCase()));
+  const filteredCommands = useMemo(() => {
+    return input === ''
+      ? commands
+      : commands.filter(c => c.name.toLowerCase().includes(input.toLowerCase()));
+  }, [input]);
 
-  // FIX 1: Wrap executeCommand in useCallback
   const executeCommand = useCallback((command) => {
     command.action();
     setIsOpen(false);
   }, [setIsOpen]);
-  
-  // Handle keyboard events
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') setIsOpen(false);
       if (e.key === 'Enter' && filteredCommands.length > 0) {
-        // Prevent default form submission behavior
         e.preventDefault();
         executeCommand(filteredCommands[0]);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [filteredCommands, setIsOpen, executeCommand]); // FIX 1: Add executeCommand to dependency array
+  }, [filteredCommands, setIsOpen, executeCommand]);
 
-  // FIX 2: Remove AnimatePresence from this component
   return (
     <motion.div
       className="command-palette-overlay flex items-start justify-center pt-20"

@@ -17,7 +17,6 @@ import CommandPalette from './components/CommandPalette';
 import ScrollAnimationWrapper from './components/ScrollAnimationWrapper';
 
 function App() {
-  const [selectedSkill, setSelectedSkill] = useState('All');
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
 
   useEffect(() => {
@@ -42,15 +41,17 @@ function App() {
       <div className="relative z-20">
         <Navbar />
         <main className="container mx-auto px-6 md:px-12">
-          <Hero /> 
+          <Hero />
           <ScrollAnimationWrapper>
             <About />
           </ScrollAnimationWrapper>
           <ScrollAnimationWrapper>
-            <Skills selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
+            {/* No props needed here anymore */}
+            <Skills />
           </ScrollAnimationWrapper>
           <ScrollAnimationWrapper>
-            <Projects selectedSkill={selectedSkill} setSelectedSkill={setSelectedSkill} />
+            {/* No props needed here anymore */}
+            <Projects />
           </ScrollAnimationWrapper>
           <ScrollAnimationWrapper>
             <Certificates />
