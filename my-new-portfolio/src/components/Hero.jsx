@@ -1,4 +1,3 @@
-// raunit2025/newportfolio/NewPortfolio-82b8d0f1a952129aa077fe44ffdd18a28a751314/my-new-portfolio/src/components/Hero.jsx
 import { motion } from 'framer-motion';
 import Typewriter from 'typewriter-effect';
 
@@ -36,7 +35,7 @@ const Hero = () => {
         animate={{
           opacity: 1,
           y: 0,
-          scale: [1, 1.03, 1], // Keyframes for the pulse effect
+          scale: [1, 1.03, 1], 
         }}
         transition={{
           default: { duration: 0.8, delay: 0.5 },
@@ -44,10 +43,10 @@ const Hero = () => {
             duration: 2.5,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 1.5, // Start pulsing after initial animation
+            delay: 1.5, 
           },
         }}
-        whileHover={{ scale: 1.1, transition: { duration: 0.2 } }} // Override scale on hover
+        whileHover={{ scale: 1.1, transition: { duration: 0.2 } }} 
         whileTap={{ scale: 0.95 }}
       >
         Get in Touch
