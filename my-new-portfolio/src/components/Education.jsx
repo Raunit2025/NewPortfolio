@@ -4,15 +4,21 @@ import { FaGraduationCap } from 'react-icons/fa';
 const educationHistory = [
   {
     degree: 'Bachelor of Technology in Computer Science',
-    institution: 'Your University Name, City, State',
-    year: '2021 - 2025',
+    institution: 'Lovely Professional University, Phagwara, Punjab',
+    year: '2022 - 2026',
     details: 'Focused on core computer science fundamentals including data structures, algorithms, and software engineering principles. Actively participated in coding clubs and hackathons.',
   },
   {
     degree: 'Higher Secondary Education (Class XII)',
-    institution: 'Your School Name, City, State',
-    year: '2020',
+    institution: 'M.D.J Public School, Arrah, Bihar',
+    year: '2022',
     details: 'Completed my higher secondary education with a focus on Physics, Chemistry, and Mathematics, achieving a strong academic record.',
+  },
+  {
+    degree: 'Secondary Education (Class X)',
+    institution: 'M.D.J Public School, Arrah, Bihar',
+    year: '2020',
+    details: 'Completed my secondary education with a focus on Physics, Chemistry, and Mathematics, achieving a strong academic record.',
   },
 ];
 

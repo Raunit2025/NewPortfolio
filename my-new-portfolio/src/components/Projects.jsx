@@ -6,40 +6,40 @@ import { useSkill } from '../contexts/SkillContext';
 // Data for projects
 const allProjects = [
   {
-    title: 'Project One',
-    description: 'A brief description of Project One, highlighting the problem it solves and the technologies used.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Tailwind CSS'],
-    imageUrl: '/Images/Project1.jpg',
-    videoUrl: 'path/to/your/project-one-video.mp4',
-    liveUrl: '#',
-    githubUrl: '#',
+    title: 'UI Forge AI',
+    description: 'This is a full-stack AI Component Generator that allows users to create React components using natural language prompts. It features a Next.js frontend with a playground interface where users can chat with an AI to generate, preview, and refine JSX and CSS code in real-time. The backend is a Node.js/Express server that handles user authentication (email/password, Google, and GitHub), manages user sessions in a MongoDB database, and communicates with the Google Generative AI (Gemini) API to generate the component code.',
+    tags: ['Next.js', 'React', 'TypeScript', 'Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'Passport.js', 'JWT', 'Tailwind CSS', 'Google Gemini AI'],
+    imageUrl: 'Images/Project1.jpg',
+    videoUrl: 'Videos/Project1.mp4',
+    liveUrl: 'https://component-generator-frontend-xzms-f3krgpah6.vercel.app/',
+    githubUrl: 'https://github.com/Raunit2025/component-generator-frontend.git',
   },
   {
-    title: 'Project Two',
-    description: 'Describe another key project. Mention your role and the main features you implemented.',
-    tags: ['Laravel', 'PHP', 'MySQL', 'REST API'],
-    imageUrl: '/Images/Project1.jpg',
-    videoUrl: 'path/to/your/project-two-video.mp4',
-    liveUrl: '#',
-    githubUrl: '#',
+    title: 'Affiliate++',
+    description: 'This is a full-stack MERN (MongoDB, Express, React, Node.js) application called "Affiliate++" designed for affiliate link management. Users can create, organize, shorten, and track affiliate links. The application provides detailed analytics on link clicks, including geolocation, device type, and referral source. It also features a role-based access control system, allowing admins to manage other users (developers, viewers). The application supports payments for credit packs and subscriptions using Razorpay.',
+    tags: ['React', 'Redux', 'Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'JWT', 'Tailwind CSS', 'Material-UI (MUI)', 'Chart.js', 'Razorpay'],
+    imageUrl: 'Images/Project2.jpg',
+    videoUrl: 'Videos/Project2.mp4',
+    liveUrl: 'https://guileless-caramel-64d8b5.netlify.app/',
+    githubUrl: 'https://github.com/Raunit2025/MERN_Prac.git',
   },
   {
-    title: 'Project Three',
-    description: 'Showcase an app you built. Talk about the development process and challenges overcome.',
-    tags: ['Swift', 'UIKit', 'iOS'],
-    imageUrl: '/Images/Project1.jpg',
-    videoUrl: 'path/to/your/project-three-video.mp4',
+    title: 'SmartQA',
+    description: 'This is a full-stack MERN (MongoDB, Express, React, Node.js) application called "SmartQA" for real-time Q&A sessions. Hosts can create rooms and share a code with participants. Participants can then join and ask questions, which are updated in real-time for everyone. The host has moderation controls to delete questions and can use the Google Gemini API to generate a summary of the top questions asked.',
+    tags: ['React', 'Redux Toolkit', 'Node.js', 'Express.js', 'MongoDB', 'Mongoose', 'JWT', 'Socket.IO', 'Tailwind CSS', 'Google Gemini AI'],
+    imageUrl: 'Images/Project3.jpg',
+    videoUrl: 'Videos/Project3.mp4',
     liveUrl: '#',
-    githubUrl: '#',
+    githubUrl: 'https://github.com/Raunit2025/SmartQA.git',
   },
     {
-    title: 'Project Four',
-    description: 'This project also uses React and is super cool.',
-    tags: ['React', 'TypeScript'],
-    imageUrl: '/Images/Project1.jpg',
-    videoUrl: 'path/to/your/project-four-video.mp4',
-    liveUrl: '#',
-    githubUrl: '#',
+    title: 'Invetory',
+    description: 'This is a responsive and dark-mode-ready Inventory Management Web App built with React and Tailwind CSS. It is designed for managing a clothing store stock, prices, and statuses.',
+    tags: ['React', 'JavaScript', 'Tailwind CSS', 'Vite'],
+    imageUrl: 'Images/Project4.jpg',
+    videoUrl: 'Videos/Project4.mp4',
+    liveUrl: 'https://clever-medovik-330bb3.netlify.app/',
+    githubUrl: 'https://github.com/Raunit2025/Inventory_Frontend.git',
   },
 ];
 
@@ -122,14 +122,20 @@ const Projects = () => {
           {filteredProjects.map((project, index) => (
             <motion.div
               key={`${project.title}-${index}`}
-              className="relative h-full bg-cover bg-center rounded-2xl overflow-hidden cursor-pointer"
-              style={{ backgroundImage: `url(${project.imageUrl})` }}
+              className="relative h-full bg-slate-900 rounded-2xl overflow-hidden cursor-pointer"
               onHoverStart={() => setHoveredIndex(index)}
               onHoverEnd={() => setHoveredIndex(null)}
               animate={{ flex: hoveredIndex === index ? 4 : 1 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             >
-              <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+              <motion.img
+                src={project.imageUrl}
+                alt={project.title}
+                className="absolute inset-0 w-full h-full object-cover"
+                animate={{ opacity: hoveredIndex === index ? 0 : 1 }}
+                transition={{ duration: 0.5, ease: 'easeInOut' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
               <div className="relative h-full flex flex-col justify-end p-6 text-white">
                 <AnimatePresence>
                   {hoveredIndex === index ? (

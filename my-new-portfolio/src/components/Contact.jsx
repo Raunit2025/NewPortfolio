@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-// Import the social icons
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
@@ -120,7 +119,6 @@ const Contact = () => {
 
         {status && <p className="mt-6 text-center text-lg">{status}</p>}
 
-        {/* Social Links Section */}
         <div className="mt-16">
           <p className="text-slate-400 mb-6">Or connect with me on social media</p>
           <div className="flex justify-center items-center space-x-8 text-4xl">
@@ -136,7 +134,7 @@ const Contact = () => {
               <FaGithub />
             </motion.a>
             <motion.a
-              href="#" // <-- Add your LinkedIn URL here
+              href="https://www.linkedin.com/in/raunitraj/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-blue-500 transition-colors"
@@ -147,7 +145,7 @@ const Contact = () => {
               <FaLinkedin />
             </motion.a>
             <motion.a
-              href="#" // <-- Add your X/Twitter URL here
+              href="https://x.com/Raunitraj_01"
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-blue-500 transition-colors"

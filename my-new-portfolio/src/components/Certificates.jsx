@@ -3,11 +3,11 @@ import { FaExternalLinkAlt } from 'react-icons/fa';
 
 const certificates = [
   {
-    title: 'Meta Full-Stack Engineer',
-    issuer: 'Coursera',
+    title: 'Data Structures and Algorithms',
+    issuer: 'GeeksforGeeks',
     date: 'Issued June 2024',
-    imageUrl: 'https://via.placeholder.com/400x250/1e293b/94a3b8?text=Meta+Full-Stack',
-    verifyUrl: '#',
+    imageUrl: 'Images/Certificate.jpg',
+    verifyUrl: 'https://www.geeksforgeeks.org/certificate/bb72aff9003a1bdab09dd9aee05ca953?utm_source=socials&utm_medium=cc_link',
   },
   {
     title: 'Advanced React',
