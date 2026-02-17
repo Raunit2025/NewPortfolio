@@ -46,11 +46,9 @@ function App() {
             <About />
           </ScrollAnimationWrapper>
           <ScrollAnimationWrapper>
-            {/* No props needed here anymore */}
             <Skills />
           </ScrollAnimationWrapper>
           <ScrollAnimationWrapper>
-            {/* No props needed here anymore */}
             <Projects />
           </ScrollAnimationWrapper>
           <ScrollAnimationWrapper>
@@ -62,9 +60,7 @@ function App() {
           <ScrollAnimationWrapper>
             <CodingStats />
           </ScrollAnimationWrapper>
-          <ScrollAnimationWrapper>
             <Contact />
-          </ScrollAnimationWrapper>
         </main>
         <Footer />
       </div>
