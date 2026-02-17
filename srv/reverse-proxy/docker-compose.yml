@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  traefik:
+    restart: unless-stopped
+    image: traefik:v2.10
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.endpoint=unix:///var/run/docker.sock"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
