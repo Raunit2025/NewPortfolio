@@ -1,24 +1,26 @@
 version: "3.9"
 
 services:
-  # 1. Frontend Service (React app)
   portfolio-frontend:
-    image: portfolio-frontend:latest # Make sure to build this from your main Dockerfile
+    build:
+      context: ../../../
+      dockerfile: Dockerfile
+    image: portfolio-frontend:latest
     restart: unless-stopped
     networks:
       - proxy
     labels:
       - "traefik.enable=true"
-      # Route main domain to this container
       - "traefik.http.routers.portfolio.rule=Host(`portfolio.raunit.dpdns.org`)"
       - "traefik.http.routers.portfolio.entrypoints=web"
 
-  # 2. Backend Service (Node.js server.js)
   portfolio-backend:
-    image: portfolio-backend:latest # Build this from Dockerfile.backend
+    build:
+      context: ../../../
+      dockerfile: Dockerfile.backend
+    image: portfolio-backend:latest
     restart: unless-stopped
     environment:
-      # Pass your secrets here (never hardcode in image)
       - EMAIL_USER=${EMAIL_USER}
       - EMAIL_PASS=${EMAIL_PASS}
       - PORT=5000
@@ -26,10 +28,8 @@ services:
       - proxy
     labels:
       - "traefik.enable=true"
-      # Route ONLY /api requests to this container
       - "traefik.http.routers.portfolio-api.rule=Host(`portfolio.raunit.dpdns.org`) && PathPrefix(`/api`)"
       - "traefik.http.routers.portfolio-api.entrypoints=web"
-      # Tell Traefik this container listens on port 5000
       - "traefik.http.services.portfolio-api.loadbalancer.server.port=5000"
 
 networks:
