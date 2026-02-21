@@ -15,6 +15,7 @@ import Spotlight from "./components/Spotlight.js";
 import ScrollToTop from "./components/ScrollToTop.js";
 import CommandPalette from "./components/CommandPalette.js";
 import ScrollAnimationWrapper from "./components/ScrollAnimationWrapper.js";
+import AIChat from "./components/AIChat";
 
 function App() {
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
@@ -67,6 +68,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <AIChat />
     </div>
   );
 }
