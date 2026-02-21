@@ -1,7 +1,7 @@
 import { DiJavascript1, DiReact, DiNodejsSmall, DiMongodb, DiSwift, DiPhp, DiLaravel } from 'react-icons/di';
 import { SiMysql, SiTailwindcss, SiTypescript } from 'react-icons/si';
 import { motion } from 'framer-motion';
-import { useSkill } from '../contexts/SkillContext'; // Import the hook
+import { useSkill } from '../contexts/SkillContext.js'; // Import the hook
 
 const skills = [
     { icon: <DiJavascript1 className="text-yellow-400" />, name: 'JavaScript', shadowColor: 'shadow-yellow-400' },
@@ -31,7 +31,7 @@ const itemVariants = {
 
 const Skills = () => {
   // Use the context instead of props
-  const { selectedSkill, setSelectedSkill } = useSkill();
+  const { selectedSkill, setSelectedSkill } = useSkill()
 
   return (
     <section id="skills" className="py-20">

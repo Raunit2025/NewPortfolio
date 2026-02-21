@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import { useSkill } from '../contexts/SkillContext';
+import { useSkill } from '../contexts/SkillContext.js';
 
 // Data for projects
 const allProjects = [
@@ -62,8 +62,8 @@ const skills = [
 const Projects = () => {
   // Use the context instead of props
   const { selectedSkill, setSelectedSkill } = useSkill();
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-  const projectsSectionRef = useRef(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const projectsSectionRef = useRef<HTMLElement | null>(null);
 
   const filteredProjects = selectedSkill === 'All'
     ? allProjects
