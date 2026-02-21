@@ -66,7 +66,6 @@ const AIChat = () => {
     }
   };
 
-  // 🔥 Native Drag Logic
   const handleMouseDown = (e: React.MouseEvent) => {
     const startX = e.clientX - position.x;
     const startY = e.clientY - position.y;
@@ -128,7 +127,6 @@ const AIChat = () => {
 
   return (
     <>
-      {/* Floating Button */}
       <motion.button
         onClick={handleToggle}
         className="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-blue-600 text-white shadow-xl flex items-center justify-center"
@@ -176,7 +174,6 @@ const AIChat = () => {
               exit={{ opacity: 0 }}
               className="w-full h-full bg-slate-900/95 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl flex flex-col"
             >
-              {/* Header (Drag Handle) */}
               <div
                 onMouseDown={handleMouseDown}
                 className="p-4 border-b border-slate-700 flex justify-between items-center cursor-move select-none"
@@ -190,7 +187,6 @@ const AIChat = () => {
                 </button>
               </div>
 
-              {/* Messages */}
               <div className="flex-1 overflow-y-auto p-4 space-y-3">
                 {messages.map((msg, index) => (
                   <div
@@ -222,7 +218,6 @@ const AIChat = () => {
                 <div ref={messagesEndRef} />
               </div>
 
-              {/* Input */}
               <div className="p-3 border-t border-slate-700 flex gap-2">
                 <input
                   type="text"

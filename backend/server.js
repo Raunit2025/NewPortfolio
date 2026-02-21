@@ -33,7 +33,7 @@ app.post('/api/send', (req, res) => {
 
   const mailOptions = {
     from: email,
-    to: process.env.EMAIL_USER, // Your receiving email address
+    to: process.env.EMAIL_USER, 
     subject: `New Contact Form Submission from ${name}`,
     text: `You have a new message from:\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
   };

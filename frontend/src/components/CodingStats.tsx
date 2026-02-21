@@ -74,7 +74,6 @@ const CodingStats = () => {
       </div>
 
       <div className="container mx-auto flex flex-col gap-8">
-        {/* Top row of stats */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <StatCard item={stats[0]} />
           <StatCard item={stats[1]} delay={0.2} />
