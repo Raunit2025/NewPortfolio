@@ -1,75 +1,24 @@
-import { useEffect, useState } from 'react';
-import Particles, { initParticlesEngine } from '@tsparticles/react';
-import { loadSlim } from '@tsparticles/slim';
-
 const ParticleBackground = () => {
-  const [init, setInit] = useState(false);
-
-  useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
-
-  if (!init) {
-    return null;
-  }
-
   return (
-    <Particles
-      id="tsparticles"
-      className="fixed top-0 left-0 w-full h-full z-0"
-      options={{
-        background: {
-          color: { value: 'transparent' },
-        },
-        fpsLimit: 60,
-        interactivity: {
-          events: {
-            onHover: {
-              enable: true,
-              mode: 'repulse',
-            },
-          },
-          modes: {
-            repulse: {
-              distance: 100,
-              duration: 0.4,
-              speed: 0.5,
-            },
-          },
-        },
-        particles: {
-          color: { value: '#4a5568' },
-          links: {
-            color: '#4a5568',
-            distance: 150,
-            enable: true,
-            opacity: 0.5,
-            width: 1,
-          },
-          collisions: { enable: true },
-          move: {
-            direction: 'none',
-            enable: true,
-            outModes: { default: 'bounce' },
-            random: false,
-            speed: 0.5,
-            straight: false,
-          },
-          number: {
-            density: { enable: true, area: 800 },
-            value: 100,
-          },
-          opacity: { value: 0.2 },
-          shape: { type: 'circle' },
-          size: { value: { min: 1, max: 5 } },
-        },
-        detectRetina: true,
-      }}
-    />
+    <div className="fixed inset-0 z-0 bg-slate-950 pointer-events-none select-none overflow-hidden">
+      
+      {/* 1. Static Ambient Corner Glows (Rendered once by GPU, zero lag) */}
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-600/10 rounded-full blur-[100px]" />
+      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-cyan-600/10 rounded-full blur-[100px]" />
+
+      {/* 2. Ultra-lightweight CSS Dot Grid */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          backgroundImage: 'radial-gradient(circle at 1.5px 1.5px, rgba(255, 255, 255, 0.07) 1.5px, transparent 0)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+
+      {/* 3. Vignette / Fade Mask (Makes the grid fade out smoothly into the dark background) */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#020617_80%)]" />
+      
+    </div>
   );
 };
 

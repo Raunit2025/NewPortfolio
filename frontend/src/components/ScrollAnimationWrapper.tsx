@@ -1,31 +1,24 @@
-import { ReactNode, useRef } from 'react';
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { ReactNode } from "react";
 
-const ScrollAnimationWrapper = ({ children }: { children: ReactNode }) => {
-  const ref = useRef<HTMLDivElement | null>(null);
+interface ScrollAnimationWrapperProps {
+  children: ReactNode;
+}
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [0.8, 1, 1, 0.8],
-  );
-
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [0, 1, 1, 0]
-  );
-
+export default function ScrollAnimationWrapper({ children }: ScrollAnimationWrapperProps) {
   return (
-    <motion.div ref={ref} className="relative" style={{ scale, opacity }}>
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 20, 
+        mass: 1 
+      }}
+    >
       {children}
     </motion.div>
   );
-};
-
-export default ScrollAnimationWrapper;
+}

@@ -22,3 +22,13 @@ html{
   backdrop-filter: blur(4px);
   z-index: 999;
 }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent; 
+}
+
+body {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

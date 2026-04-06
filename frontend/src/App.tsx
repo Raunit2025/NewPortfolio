@@ -8,7 +8,6 @@ import Projects from "./components/Projects.js";
 import Certificates from "./components/Certificates.js";
 import Education from "./components/Education.js";
 import Contact from "./components/Contact.js";
-import CodingStats from "./components/CodingStats.js";
 import Footer from "./components/Footer.js";
 import ParticleBackground from "./components/ParticleBackground.js";
 import Spotlight from "./components/Spotlight.js";
@@ -30,12 +29,14 @@ function App() {
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
-    <div className="bg-slate-900 text-slate-100 font-sans relative">
+    <div className="bg-slate-950 text-slate-100 font-sans relative overflow-x-hidden w-full">
+      {" "}
       <AnimatePresence>
         {isPaletteOpen && <CommandPalette setIsOpen={setIsPaletteOpen} />}
       </AnimatePresence>
@@ -60,9 +61,6 @@ function App() {
           </ScrollAnimationWrapper>
           <ScrollAnimationWrapper>
             <Education />
-          </ScrollAnimationWrapper>
-          <ScrollAnimationWrapper>
-            <CodingStats />
           </ScrollAnimationWrapper>
           <Contact />
         </main>

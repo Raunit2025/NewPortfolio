@@ -1,78 +1,186 @@
-import { DiJavascript1, DiReact, DiNodejsSmall, DiMongodb, DiSwift, DiPhp, DiLaravel } from 'react-icons/di';
-import { SiMysql, SiTailwindcss, SiTypescript } from 'react-icons/si';
-import { motion } from 'framer-motion';
-import { useSkill } from '../contexts/SkillContext.js'; // Import the hook
+import { useState } from "react";
+import {
+  DiJavascript1,
+  DiReact,
+  DiNodejsSmall,
+  DiMongodb,
+  DiSwift,
+  DiPhp,
+  DiLaravel,
+} from "react-icons/di";
+import { SiMysql, SiTailwindcss, SiTypescript } from "react-icons/si";
+import { motion, AnimatePresence } from "framer-motion";
+import { useSkill } from "../contexts/SkillContext.js";
 
 const skills = [
-    { icon: <DiJavascript1 className="text-yellow-400" />, name: 'JavaScript', shadowColor: 'shadow-yellow-400' },
-    { icon: <SiTypescript className="text-blue-500" />, name: 'TypeScript', shadowColor: 'shadow-blue-500' },
-    { icon: <DiReact className="text-blue-400" />, name: 'React', shadowColor: 'shadow-blue-400' },
-    { icon: <DiNodejsSmall className="text-green-500" />, name: 'Node.js', shadowColor: 'shadow-green-500' },
-    { icon: <DiMongodb className="text-green-400" />, name: 'MongoDB', shadowColor: 'shadow-green-400' },
-    { icon: <SiMysql className="text-blue-600" />, name: 'MySQL', shadowColor: 'shadow-blue-600' },
-    { icon: <DiPhp className="text-purple-500" />, name: 'PHP', shadowColor: 'shadow-purple-500' },
-    { icon: <DiLaravel className="text-red-500" />, name: 'Laravel', shadowColor: 'shadow-red-500' },
-    { icon: <DiSwift className="text-orange-500" />, name: 'Swift', shadowColor: 'shadow-orange-500' },
-    { icon: <SiTailwindcss className="text-teal-400" />, name: 'Tailwind CSS', shadowColor: 'shadow-teal-400' },
+  {
+    icon: <DiJavascript1 />,
+    name: "JavaScript",
+    color: "text-yellow-400",
+    dot: "bg-yellow-400",
+  },
+  {
+    icon: <SiTypescript />,
+    name: "TypeScript",
+    color: "text-blue-500",
+    dot: "bg-blue-500",
+  },
+  {
+    icon: <DiReact />,
+    name: "React",
+    color: "text-cyan-400",
+    dot: "bg-cyan-400",
+  },
+  {
+    icon: <DiNodejsSmall />,
+    name: "Node.js",
+    color: "text-green-500",
+    dot: "bg-green-500",
+  },
+  {
+    icon: <DiMongodb />,
+    name: "MongoDB",
+    color: "text-green-400",
+    dot: "bg-green-400",
+  },
+  {
+    icon: <SiMysql />,
+    name: "MySQL",
+    color: "text-blue-600",
+    dot: "bg-blue-600",
+  },
+  {
+    icon: <DiPhp />,
+    name: "PHP",
+    color: "text-purple-500",
+    dot: "bg-purple-500",
+  },
+  {
+    icon: <DiLaravel />,
+    name: "Laravel",
+    color: "text-red-500",
+    dot: "bg-red-500",
+  },
+  {
+    icon: <DiSwift />,
+    name: "Swift",
+    color: "text-orange-500",
+    dot: "bg-orange-500",
+  },
+  {
+    icon: <SiTailwindcss />,
+    name: "Tailwind CSS",
+    color: "text-teal-400",
+    dot: "bg-teal-400",
+  },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1 },
-};
-
 const Skills = () => {
-  // Use the context instead of props
-  const { selectedSkill, setSelectedSkill } = useSkill()
+  const { selectedSkill, setSelectedSkill } = useSkill();
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+
+  const displaySkill = hoveredSkill || selectedSkill || "Tech Stack";
 
   return (
-    <section id="skills" className="py-20">
-      <div className="text-center mb-12">
-        <div className="relative inline-block">
-          <h2 className="text-4xl font-bold text-center font-heading">
-            My Tech <span className="text-blue-500">Stack</span>
-          </h2>
-          <motion.div
-            className="absolute -bottom-2 left-1/4 w-1/2 h-1 bg-blue-500"
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-            viewport={{ once: true }}
-          />
-        </div>
+    <section
+      id="skills"
+      className="py-32 relative min-h-[60vh] flex flex-col justify-center items-center"
+    >
+      {/* 1. Cinematic Hollow Typography with Dynamic Sizing */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+        <AnimatePresence mode="wait">
+          <motion.h2
+            key={displaySkill}
+            initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+            animate={{ opacity: 0.15, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="font-black whitespace-nowrap text-center tracking-tighter"
+            style={{
+              fontSize: `clamp(4rem, min(24vw, ${140 / displaySkill.length}vw), 15rem)`,
+              WebkitTextStroke: "2px rgba(255, 255, 255, 0.8)",
+              color: "transparent",
+            }}
+          >
+            {displaySkill.toUpperCase()}
+          </motion.h2>
+        </AnimatePresence>
       </div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="container mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 text-center"
-      >
-        {skills.map((skill) => (
-          <motion.div
-            key={skill.name}
-            variants={itemVariants}
-            className={`flex flex-col items-center justify-center p-6 bg-slate-800/50 backdrop-blur-lg rounded-lg border shadow-lg transform hover:scale-110 transition-all duration-300 group cursor-pointer ${
-              selectedSkill === skill.name
-                ? 'border-blue-500'
-                : 'border-slate-300/10'
-            }`}
-            onClick={() => setSelectedSkill(skill.name)}
-          >
-            <div className={`text-7xl mb-4 transition-all duration-300 group-hover:drop-shadow-[0_0_15px_var(--tw-shadow-color)] ${skill.shadowColor}`}>{skill.icon}</div>
-            <p className="text-lg font-semibold">{skill.name}</p>
-          </motion.div>
-        ))}
-      </motion.div>
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-4 flex flex-col items-center">
+        {/* 2. Interactive Foreground Display */}
+        <div className="mb-24 h-24 flex flex-col items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={displaySkill}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="flex flex-col items-center"
+            >
+              <h3 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-2 drop-shadow-lg">
+                {displaySkill}
+              </h3>
+              <p className="text-cyan-400 text-sm md:text-base uppercase tracking-[0.2em] font-bold">
+                {displaySkill === "Tech Stack"
+                  ? "Explore the dock"
+                  : "Core Technology"}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* 3. The Mac-Style Floating Dock */}
+        <motion.div
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          className="flex flex-wrap md:flex-nowrap justify-center items-center gap-2 md:gap-4 p-4 md:px-8 md:py-5 rounded-[2.5rem] md:rounded-full bg-slate-900/40 backdrop-blur-3xl border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)]"
+        >
+          {skills.map((skill) => {
+            const isActive = selectedSkill === skill.name;
+            const isHovered = hoveredSkill === skill.name;
+
+            return (
+              <motion.button
+                key={skill.name}
+                onClick={() => setSelectedSkill(skill.name)}
+                onMouseEnter={() => setHoveredSkill(skill.name)}
+                onMouseLeave={() => setHoveredSkill(null)}
+                className={`
+                  relative flex items-center justify-center w-14 h-14 md:w-16 md:h-16 rounded-2xl md:rounded-full
+                  transition-all duration-300
+                  ${isActive ? "bg-white/10 shadow-inner" : "bg-transparent hover:bg-white/5"}
+                `}
+                whileHover={{
+                  scale: 1.5,
+                  y: -16,
+                  zIndex: 50,
+                  transition: { type: "spring", stiffness: 400, damping: 15 },
+                }}
+                whileTap={{ scale: 0.9 }}
+              >
+                {/* Active Selection Dot Indicator */}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeSkillDot"
+                    className={`absolute -bottom-3 w-1.5 h-1.5 rounded-full ${skill.dot} shadow-[0_0_10px_currentColor]`}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  />
+                )}
+
+                {/* Icon rendering with reflection effect */}
+                <div
+                  className={`text-4xl md:text-5xl transition-all duration-300 ${isHovered || isActive ? `${skill.color} drop-shadow-[0_0_15px_currentColor]` : "text-slate-400"}`}
+                >
+                  {skill.icon}
+                </div>
+              </motion.button>
+            );
+          })}
+        </motion.div>
+      </div>
     </section>
   );
 };
